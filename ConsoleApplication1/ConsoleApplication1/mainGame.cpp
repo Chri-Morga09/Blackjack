@@ -2,9 +2,10 @@
 #include <iostream>
 using namespace std;
 
-int main() {    
+int mainGame() {    
     Game gioco;
 
+    cout << "TEST CLASSE GAME" << endl;
     gioco.iniziaGioco();
     gioco.mostraStato();
     gioco.turnoGiocatore();
