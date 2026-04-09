@@ -15,18 +15,37 @@ Player::Player(std::string nome)
 	this->ValoreCarteAttuale = 0;
 }
 
-int Player::aggiornaFiche(int punteggio)
+int Player::vincitaFiche(int valore)
 {
-	this->fiche = fiche + punteggio;
+	this->fiche = fiche + valore;
 	return this->fiche;
 }
-
-int Player::aggiornaValoreCarteAttuale(int punteggio)
+int Player::perditaFiche(int valore)
 {
-	this->ValoreCarteAttuale = ValoreCarteAttuale + punteggio;
+	if (this->fiche > valore)
+	{
+		this->fiche = this->fiche - valore;
+	}
 	return this->fiche;
 }
+int Player::aggiornaValoreCarteAttuale(int valore)
+{
+	this->ValoreCarteAttuale = ValoreCarteAttuale + valore;
+	return this->ValoreCarteAttuale;
+}
 
+int Player::getFiche()
+{
+	return this->fiche;
+}
+int Player::getValoreCarteAttuale()
+{
+	return this->ValoreCarteAttuale;
+}
+std::string Player::getNome()
+{
+	return this->nome;
+}
 std::string Player::ToString()
 {
 	std::string s;

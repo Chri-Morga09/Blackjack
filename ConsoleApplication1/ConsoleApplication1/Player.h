@@ -8,9 +8,16 @@ private:
 	int ValoreCarteAttuale;
 public:
 	Player();
-	Player(std::string nome);
-	int aggiornaFiche(int valore);
-   int aggiornaValoreCarteAttuale(int valore);
-	std::string ToString();
+	Player(std::string nome);  //costruttore che aggiunge nome
+
+	int vincitaFiche(int valore);   //somma un valore alle fiche
+	int perditaFiche(int valore);   //sottrae un valore alle fiche
+   int aggiornaValoreCarteAttuale(int valore);  //aggiorna il valore delle carte nella mano
+
+   int getFiche();  //prende valore fiche
+   int getValoreCarteAttuale(); //prende valore carte
+   std::string getNome();  //prende il nome
+
+	std::string ToString();  //per stampare i valori
 
 };

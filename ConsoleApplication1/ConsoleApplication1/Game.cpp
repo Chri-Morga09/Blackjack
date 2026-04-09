@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "Player.h"
+#include "Deck.h"
 #include <iostream>
 #include <cstdlib>
 using namespace std;
