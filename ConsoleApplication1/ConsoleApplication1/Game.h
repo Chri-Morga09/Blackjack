@@ -2,15 +2,13 @@
 #include<iostream>
 #include "Deck.h"
 #include "Player.h"
-//#include "Player.h"
 using namespace std;
 
 class Game {
 private:
     Deck mazzo;
     Player giocatore;
-   // Player giocatore;
-   // Player banco;
+    Player banco;
     int puntataCorrente;
     bool partitaInCorso;
     void distribuisciCarte();
