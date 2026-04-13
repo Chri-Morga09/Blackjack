@@ -35,7 +35,7 @@ void Card::setSuit(int s){
 //imposta il valore
 void Card::setRank(int r){
 
-    this->suit = r;
+    this->rank = r;
 }
 
 
@@ -62,9 +62,10 @@ string Card::toString(){
     valori[9] = "9";
     valori[10] = "10";
     valori[11] = "Jack";//box
-    valori[12] = "Quen";
+    valori[12] = "Queen";
     valori[13] = "Re";
     
+    if (suit < 0 || suit >= 4 || rank < 0 || rank >= 14) return "carta non valida";
 
     string risultato = valori[this->rank] + " di " + semi[this->suit];
     return risultato;
