@@ -1,8 +1,10 @@
 #pragma once
+#include"Card.h"
 #include <string>
 class Player {
 
 private:
+	Card mano;
 	std::string nome;
 	int fiche;
 	int ValoreCarteAttuale;
@@ -12,7 +14,7 @@ public:
 
 	int vincitaFiche(int valore);   //somma un valore alle fiche
 	int perditaFiche(int valore);   //sottrae un valore alle fiche
-   int aggiornaValoreCarteAttuale(int valore);  //aggiorna il valore delle carte nella mano
+   int aggiornaManoAttuale(int valore);  //aggiorna il valore delle carte nella mano
 
    int getFiche();  //prende valore fiche
    int getValoreCarteAttuale(); //prende valore carte

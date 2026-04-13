@@ -1,4 +1,5 @@
 #include "Player.h"
+#include"Card.h"
 #include <string>
 
 Player::Player()
@@ -28,7 +29,7 @@ int Player::perditaFiche(int valore)
 	}
 	return this->fiche;
 }
-int Player::aggiornaValoreCarteAttuale(int valore)
+int Player::aggiornaManoAttuale(int valore)
 {
 	this->ValoreCarteAttuale = ValoreCarteAttuale + valore;
 	return this->ValoreCarteAttuale;
