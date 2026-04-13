@@ -14,7 +14,7 @@ public:
 
 	void vincitaFiche(int valore);   //somma un valore alle fiche
 	void perditaFiche(int valore);   //sottrae un valore alle fiche
-  void aggiungiCarta(Deck mazzo);  //aggiorna il valore delle carte nella mano
+  Deck aggiungiCarta(Deck mazzo);  //aggiorna il valore delle carte nella mano
    void svuotaMano();  //svuota la mano alla fine del turno
 
    int getFiche();  //prende valore fiche

@@ -22,5 +22,5 @@ int mainPlayer()
 	cout<<giocatore1.ToString();
 	cout << endl;
 	cout<<giocatore2.ToString();
-
+	return 0;
 }
