@@ -1,5 +1,5 @@
 #include "Deck.h"
-#include <ctime>
+#include <cstdlib>
 
 srand(time(NULL));
 
