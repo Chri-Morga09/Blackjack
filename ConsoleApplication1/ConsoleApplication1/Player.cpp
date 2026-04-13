@@ -30,7 +30,7 @@ void Player::perditaFiche(int valore)
 	}
 	
 }
-void Player::aggiornaCarta(Deck mazzo)
+void Player::aggiungiCarta(Deck mazzo)
 {
 	this->ValoreManoAttuale += mazzo.drawCard().getRank();
 	

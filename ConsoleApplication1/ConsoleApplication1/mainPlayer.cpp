@@ -14,8 +14,8 @@ int mainPlayer()
 	giocatore1.perditaFiche(100);
 	giocatore2.perditaFiche(500);
 
-	giocatore1.aggiornaCarta(mazzo);
-	giocatore2.aggiornaCarta(mazzo);
+	giocatore1.aggiungiCarta(mazzo);
+	giocatore2.aggiungiCarta(mazzo);
 
 	std::string nome1 = giocatore1.getNome();
 	int fiche1 = giocatore1.getFiche();
