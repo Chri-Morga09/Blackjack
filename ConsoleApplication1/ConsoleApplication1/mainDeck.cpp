@@ -5,31 +5,26 @@
 
 using namespace std;
 
-//0 fiori 
-//1 cuori 
-//2 picche
-//3 quadri 
+//0 fiori 1 cuori 2 picche 3 quadri
 
 int mainDeck() {
-    // Usa una conversione esplicita per evitare avvisi di perdita di dati
+    n=5;
     srand(time(NULL));
-
     Deck mazzo;
-
     cout << "TEST CLASSE DECK" << endl;
-    cout << "carte iniziali: " << mazzo.cardsLeft() << endl;
+    cout << "carte iniziali: " << mazzo.carteRimanenti() << endl;
 
-    // Pesca 5 carte di prova
-    for (int i = 0; i < 5; ++i) {
-        Card c = mazzo.drawCard();
+    // pesca n carte di prova
+    for (int i = 0; i < n; ++i) {
+        Card c = mazzo.pescaCarta();
         cout << "carta " << i + 1 << ": valore " << c.getRank() << " | seme " << c.getSuit() << endl;
     }
 
-    cout << "carte rimaste dopo la pesca: " << mazzo.cardsLeft() << endl;
+    cout << "carte rimaste dopo la pesca: " << mazzo.carteRimanenti() << endl;
 
-    // Test del reset
+    // test del reset
     mazzo.reset();
-    cout << "mazzo resettato. carte disponibili: " << mazzo.cardsLeft() << endl;
+    cout << "mazzo resettato. carte disponibili: " << mazzo.carteRimanenti() << endl;
 
     return 0;
 }
