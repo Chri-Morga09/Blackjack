@@ -38,7 +38,11 @@ void Player::aggiungiCarta(Deck& mazzo)
 		valore = 10;       // il valore di J/Q/R vale sempre 10
 	}
 	this->ValoreManoAttuale += valore;
-	
+	if (valore == 1)
+	{
+		if (this->ValoreManoAttuale + 10 <= 21)
+			this->ValoreManoAttuale += 10; 
+	}
 }
 void Player::svuotaMano()
 {
