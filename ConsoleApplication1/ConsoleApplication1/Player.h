@@ -4,7 +4,7 @@
 class Player {
 
 private:
-	Deck mazzo;
+	
 	std::string nome;
 	int fiche;
 	int ValoreManoAttuale;
@@ -14,7 +14,7 @@ public:
 
 	void vincitaFiche(int valore);   //somma un valore alle fiche
 	void perditaFiche(int valore);   //sottrae un valore alle fiche
-  Deck aggiungiCarta(Deck mazzo);  //aggiorna il valore delle carte nella mano
+    void aggiungiCarta(Deck& mazzo);  //aggiorna il valore delle carte nella mano
    void svuotaMano();  //svuota la mano alla fine del turno
 
    int getFiche();  //prende valore fiche

@@ -30,10 +30,15 @@ void Player::perditaFiche(int valore)
 	}
 	
 }
-Deck Player::aggiungiCarta(Deck mazzo)
+void Player::aggiungiCarta(Deck& mazzo)
 {
-	this->ValoreManoAttuale += mazzo.drawCard().getRank();
-	return this->mazzo;
+	int valore = mazzo.drawCard().getRank();
+	if (valore > 10)      
+	{
+		valore = 10;       // il valore di J/Q/R vale sempre 10
+	}
+	this->ValoreManoAttuale += valore;
+	
 }
 void Player::svuotaMano()
 {

@@ -7,7 +7,7 @@ int mainPlayer();
 
 int main()
 {
-  
+    srand(time(NULL));
     mainPlayer();
     mainCard(); 
     mainDeck();
