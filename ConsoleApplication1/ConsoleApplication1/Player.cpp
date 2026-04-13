@@ -1,47 +1,52 @@
 #include "Player.h"
 #include"Card.h"
+#include"Deck.h"
 #include <string>
 
 Player::Player()
 {
 	this->nome;
 	this->fiche = 100;
-	this->ValoreCarteAttuale = 0;
+	this->ValoreManoAttuale = 0;
 }
 
 Player::Player(std::string nome)
 {
 	this->nome = nome;
 	this->fiche = 100;
-	this->ValoreCarteAttuale = 0;
+	this->ValoreManoAttuale = 0;
 }
 
-int Player::vincitaFiche(int valore)
+void Player::vincitaFiche(int valore)
 {
 	this->fiche = fiche + valore;
-	return this->fiche;
+	
 }
-int Player::perditaFiche(int valore)
+void Player::perditaFiche(int valore)
 {
 	if (this->fiche > valore)
 	{
 		this->fiche = this->fiche - valore;
 	}
-	return this->fiche;
+	
 }
-int Player::aggiornaManoAttuale(int valore)
+void Player::aggiornaCarta(Deck mazzo)
 {
-	this->ValoreCarteAttuale = ValoreCarteAttuale + valore;
-	return this->ValoreCarteAttuale;
+	this->ValoreManoAttuale += mazzo.drawCard().getRank();
+	
+}
+void Player::svuotaMano()
+{
+	this->ValoreManoAttuale = 0;
 }
 
 int Player::getFiche()
 {
 	return this->fiche;
 }
-int Player::getValoreCarteAttuale()
+int Player::getValoreManoAttuale()
 {
-	return this->ValoreCarteAttuale;
+	return this->ValoreManoAttuale;
 }
 std::string Player::getNome()
 {
@@ -50,7 +55,7 @@ std::string Player::getNome()
 std::string Player::ToString()
 {
 	std::string s;
-	s = "nome: " +this->nome +" fiche: " + std::to_string(this->fiche) + " valore carte attuale " + std::to_string(this->ValoreCarteAttuale);
+	s = "nome: " +this->nome +" fiche: " + std::to_string(this->fiche) + " valore carte attuale " + std::to_string(this->ValoreManoAttuale);
 	return s;
 
 }
