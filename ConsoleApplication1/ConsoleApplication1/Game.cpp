@@ -39,14 +39,12 @@ void Game::turnoGiocatore() {
         if (scelta == 'h') {
             giocatore.aggiungiCarta(mazzo.drawCard().getRank());
             aggiornaPunteggi();
-            mostraStato();
-            
+            mostraStato();     
         }
     } while (scelta != 's');
 
     if (giocatore.getPunteggio() > 21) {
         cout << "Hai sballato!" << endl;
-
     }
 }
 
@@ -66,13 +64,21 @@ void Game::determinaVincitore() {
     cout << "Punteggio banco: " << punteggioB << endl;
 
     if (punteggioG > 21)
+    {
         cout << "Hai perso!" << endl;
+    }
     else if (punteggioB > 21 || punteggioG > punteggioB)
+    {
         cout << "Hai vinto!" << endl;
+    }    
     else if (punteggioG < punteggioB)
+    {
         cout << "Hai perso!" << endl;
+    }
     else
+    {
         cout << "Pareggio!" << endl;
+    }   
 }
 
 void Game::mostraStato() {

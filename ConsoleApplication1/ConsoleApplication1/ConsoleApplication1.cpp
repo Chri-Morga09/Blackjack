@@ -7,7 +7,7 @@ int mainPlayer();
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+  
     mainPlayer();
     mainCard(); 
     mainDeck();
