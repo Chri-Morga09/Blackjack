@@ -11,10 +11,10 @@ Game::Game() {
 }
 
 void Game::distribuisciCarte() {
-    giocatore.aggiungiCarta(mazzo.drawCard().getRank());
-    giocatore.aggiungiCarta(mazzo.drawCard().getRank());
-    banco.aggiungiCarta(mazzo.drawCard().getRank());
-    banco.aggiungiCarta(mazzo.drawCard().getRank());
+    giocatore.aggiungiCarta(mazzo);
+    giocatore.aggiungiCarta(mazzo);
+    banco.aggiungiCarta(mazzo);
+    banco.aggiungiCarta(mazzo);
     aggiornaPunteggi();
 }
 
@@ -28,18 +28,19 @@ void Game::iniziaGioco() {
     puntataCorrente = 0;
     partitaInCorso = true;
     distribuisciCarte();
-    mostraStato();
+    
 }
 
 void Game::turnoGiocatore() {
     char scelta;
     do {
+        cout << "--- INIZIO GIOCO ---" << endl;
         cout << "Hit (h) o Stand (s)? ";
         cin >> scelta;
         if (scelta == 'h') {
-            giocatore.aggiungiCarta(mazzo.drawCard().getRank());
+            giocatore.aggiungiCarta(mazzo);
             aggiornaPunteggi();
-            mostraStato();     
+            mostraStato();
         }
     } while (scelta != 's');
 
@@ -50,7 +51,7 @@ void Game::turnoGiocatore() {
 
 void Game::turnoBanco() {
     while (banco.getValoreManoAttuale() < 17) {
-        banco.aggiungiCarta(mazzo.drawCard().getRank());
+        banco.aggiungiCarta(mazzo);
         aggiornaPunteggi();
     }
     cout << "Turno del banco terminato." << endl;

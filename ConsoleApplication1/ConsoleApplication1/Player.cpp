@@ -55,7 +55,7 @@ std::string Player::getNome()
 std::string Player::ToString()
 {
 	std::string s;
-	s = "nome: " +this->nome +" fiche: " + std::to_string(this->fiche) + " valore carte attuale " + std::to_string(this->ValoreManoAttuale);
+	s = "nome: " +this->nome +" fiche: " + std::to_string(this->fiche) + " valore carte attuale: " + std::to_string(this->ValoreManoAttuale);
 	return s;
 
 }

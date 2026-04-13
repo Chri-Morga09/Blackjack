@@ -5,22 +5,23 @@
 using namespace std;
 int mainPlayer()
 {
+	cout << "TEST CLASSE PLAYER" << endl;
 	Player giocatore1 = Player("Alessandro");
-	Player giocatore2 = Player("Marco");
+
 	Deck mazzo;
 	giocatore1.vincitaFiche(200);
-	giocatore2.vincitaFiche(100);
+
 
 	giocatore1.perditaFiche(100);
-	giocatore2.perditaFiche(500);
+
 
 	giocatore1.aggiungiCarta(mazzo);
-	giocatore2.aggiungiCarta(mazzo);
+
 
 	std::string nome1 = giocatore1.getNome();
 	int fiche1 = giocatore1.getFiche();
 	cout<<giocatore1.ToString();
-	cout << endl;
-	cout<<giocatore2.ToString();
+
+
 	return 0;
 }
