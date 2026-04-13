@@ -9,7 +9,9 @@ int main()
 {
     srand(time(NULL));
     mainPlayer();
-    mainCard(); 
+    mainCard();
     mainDeck();
     mainGame();
+    
+   
 }

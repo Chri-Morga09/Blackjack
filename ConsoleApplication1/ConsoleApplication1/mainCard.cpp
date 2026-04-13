@@ -6,7 +6,7 @@ int mainCard() {
 
     //carta inizio
     Card c1;      
-    cout << "Carta 1: " << c1.toString() << endl;
+    cout << endl<<"Carta 1: " << c1.toString() << endl;
 
     //jack di picche
     Card c2(3, 11);   
