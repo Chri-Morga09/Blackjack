@@ -24,7 +24,7 @@ void Game::aggiornaPunteggi() {
 }
 
 void Game::iniziaGioco() {
-    mazzo.shuffle();
+    mazzo.mescola();
     puntataCorrente = 0;
     partitaInCorso = true;
     distribuisciCarte();
@@ -88,7 +88,7 @@ void Game::mostraStato() {
 }
 
 bool Game::continuaPartita() {
-    return giocatore.getFiche() > 0 && mazzo.cardsLeft() > 0;
+    return giocatore.getFiche() > 0 && mazzo.carteRimanenti() > 0;
 }
 
 void Game::resetPartita() {
