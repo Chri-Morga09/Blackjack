@@ -19,8 +19,8 @@ void Game::distribuisciCarte() {
 }
 
 void Game::aggiornaPunteggi() {
-    giocatore.getPunteggio();
-    banco.getPunteggio();
+    giocatore.getValoreManoAttuale();
+    banco.getValoreManoAttuale();
 }
 
 void Game::iniziaGioco() {
@@ -43,13 +43,13 @@ void Game::turnoGiocatore() {
         }
     } while (scelta != 's');
 
-    if (giocatore.getPunteggio() > 21) {
+    if (giocatore.getValoreManoAttuale() > 21) {
         cout << "Hai sballato!" << endl;
     }
 }
 
 void Game::turnoBanco() {
-    while (banco.getPunteggio() < 17) {
+    while (banco.getValoreManoAttuale() < 17) {
         banco.aggiungiCarta(mazzo.drawCard().getRank());
         aggiornaPunteggi();
     }
@@ -57,8 +57,8 @@ void Game::turnoBanco() {
 }
 
 void Game::determinaVincitore() {
-    int punteggioG = giocatore.getPunteggio();
-    int punteggioB = banco.getPunteggio();
+    int punteggioG = giocatore.getValoreManoAttuale();
+    int punteggioB = banco.getValoreManoAttuale();
 
     cout << "Punteggio giocatore: " << punteggioG << endl;
     cout << "Punteggio banco: " << punteggioB << endl;
@@ -82,12 +82,12 @@ void Game::determinaVincitore() {
 }
 
 void Game::mostraStato() {
-    cout << "Carte giocatore: " << giocatore.getPunteggio() << endl;
-    cout << "Carte banco: " << banco.getPunteggio() << endl;
+    cout << "Carte giocatore: " << giocatore.getValoreManoAttuale() << endl;
+    cout << "Carte banco: " << banco.getValoreManoAttuale() << endl;
 }
 
 bool Game::continuaPartita() {
-    return giocatore.getFiches() > 0 && mazzo.cardsLeft() > 0;
+    return giocatore.getFiche() > 0 && mazzo.cardsLeft() > 0;
 }
 
 void Game::resetPartita() {
