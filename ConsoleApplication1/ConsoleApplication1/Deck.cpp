@@ -33,15 +33,16 @@ Card Deck::pescaCarta() {
     if (this->indiceProxCarta >= 52) {
         reset(); // se finiscono ricomincia
     }
-    return this->carte[indiceProxCarta++];
+    if (this->indiceProxCarta < 52) {
+        return this->carte[indiceProxCarta++];
+    } 
 }
 
-// Calcola quante carte restano
 int Deck::carteRimanenti() {
     return 52 - this->indiceProxCarta;
 }
 
-// Reset totale
+// reset totale
 void Deck::reset() {
     generaMazzo();
     mescola();

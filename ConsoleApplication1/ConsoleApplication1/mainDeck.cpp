@@ -8,7 +8,7 @@ using namespace std;
 //0 fiori 1 cuori 2 picche 3 quadri
 
 int mainDeck() {
-    n=5;
+    int n = 5;
     srand(time(NULL));
     Deck mazzo;
     cout << "TEST CLASSE DECK" << endl;
