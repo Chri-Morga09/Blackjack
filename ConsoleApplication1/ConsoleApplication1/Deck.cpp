@@ -1,8 +1,6 @@
 #include "Deck.h"
 #include <cstdlib>
 
-srand(time(NULL));
-
 Deck::Deck() {
     reset();
 }
