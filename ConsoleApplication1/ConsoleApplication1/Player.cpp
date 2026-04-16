@@ -7,6 +7,7 @@ Player::Player()
 {
 	this->nome;
 	this->fiche = 100;
+	this->puntata = 0;
 	this->ValoreManoAttuale = 0;
 }
 
@@ -14,21 +15,32 @@ Player::Player(std::string nome)
 {
 	this->nome = nome;
 	this->fiche = 100;
+	this->puntata = 0;
 	this->ValoreManoAttuale = 0;
 }
 
-void Player::vincitaFiche(int valore)
+void Player::vincitaFiche()
 {
-	this->fiche = fiche + valore;
-	
+	this->fiche = this->fiche + this->puntata * 2;
 }
-void Player::perditaFiche(int valore)
+void Player::perditaFiche()
 {
-	if (this->fiche > valore)
+	if (this->fiche > 0)
 	{
-		this->fiche = this->fiche - valore;
+		this->fiche = this->fiche - this->puntata;
+	}
+	else
+	{
+		this->fiche = 0;
 	}
 	
+}
+void Player::Puntata(int valore)
+{
+	if (valore < this->fiche&& valore>0)
+	{
+		this->puntata = valore;
+	}
 }
 void Player::aggiungiCarta(Deck& mazzo)
 {
@@ -56,6 +68,9 @@ int Player::getFiche()
 int Player::getValoreManoAttuale()
 {
 	return this->ValoreManoAttuale;
+}int Player::getPuntata()
+{
+	return this->puntata;
 }
 std::string Player::getNome()
 {
