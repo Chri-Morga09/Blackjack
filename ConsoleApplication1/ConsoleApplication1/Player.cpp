@@ -44,7 +44,7 @@ void Player::Puntata(int valore)
 }
 void Player::aggiungiCarta(Deck& mazzo)
 {
-	int valore = mazzo.drawCard().getRank();
+	int valore = mazzo.pescaCarta().getRank();
 	if (valore > 10)      
 	{
 		valore = 10;       // il valore di J/Q/R vale sempre 10

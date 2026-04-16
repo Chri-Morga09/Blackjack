@@ -24,17 +24,26 @@ void Game::aggiornaPunteggi() {
 }
 
 void Game::iniziaGioco() {
-    mazzo.shuffle();
-    puntataCorrente = 0;
+    mazzo.reset();
     partitaInCorso = true;
+
+    cout << "Hai " << giocatore.getFiche() << " fiche." << endl;
+    cout << "Inserisci puntata: ";
+    cin >> puntataCorrente;
+
+    while (puntataCorrente > giocatore.getFiche() || puntataCorrente <= 0) {
+        cout << "Puntata non valida. Riprova: ";
+        cin >> puntataCorrente;
+    }
+
     distribuisciCarte();
-    
 }
 
 void Game::turnoGiocatore() {
     char scelta;
+    cout << "--- INIZIO GIOCO ---" << endl;
     do {
-        cout << "--- INIZIO GIOCO ---" << endl;
+        
         cout << "Hit (h) o Stand (s)? ";
         cin >> scelta;
         if (scelta == 'h') {
@@ -42,7 +51,7 @@ void Game::turnoGiocatore() {
             aggiornaPunteggi();
             mostraStato();
         }
-    } while (scelta != 's');
+    } while (scelta != 's' && giocatore.getValoreManoAttuale() <= 21);
 
     if (giocatore.getValoreManoAttuale() > 21) {
         cout << "Hai sballato!" << endl;
@@ -56,7 +65,6 @@ void Game::turnoBanco() {
     }
     cout << "Turno del banco terminato." << endl;
 }
-
 void Game::determinaVincitore() {
     int punteggioG = giocatore.getValoreManoAttuale();
     int punteggioB = banco.getValoreManoAttuale();
@@ -67,19 +75,24 @@ void Game::determinaVincitore() {
     if (punteggioG > 21)
     {
         cout << "Hai perso!" << endl;
+        giocatore.perditaFiche(puntataCorrente);
     }
     else if (punteggioB > 21 || punteggioG > punteggioB)
     {
         cout << "Hai vinto!" << endl;
-    }    
+        giocatore.vincitaFiche(puntataCorrente);
+    }
     else if (punteggioG < punteggioB)
     {
         cout << "Hai perso!" << endl;
+        giocatore.perditaFiche(puntataCorrente);
     }
     else
     {
         cout << "Pareggio!" << endl;
-    }   
+    }
+
+    cout << "Fiche attuali: " << giocatore.getFiche() << endl;
 }
 
 void Game::mostraStato() {
@@ -88,7 +101,7 @@ void Game::mostraStato() {
 }
 
 bool Game::continuaPartita() {
-    return giocatore.getFiche() > 0 && mazzo.cardsLeft() > 0;
+    return giocatore.getFiche() > 0 && mazzo.carteRimanenti() > 0;
 }
 
 void Game::resetPartita() {

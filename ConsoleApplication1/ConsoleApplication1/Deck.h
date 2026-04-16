@@ -2,16 +2,15 @@
 #include "Card.h"
 class Deck {
 private:
-    Card cards[52];      // Array statico di 52 carte
-    int topCardIndex;    // Indice della prossima carta da pescare
-
-    void generate();     // Riempie il mazzo in ordine
+    Card carte[52];  // vettore che contiene le 52 carte
+    int indiceProxCarta;  // indice della prossima carta da pescare
+    void generaMazzo();  // riempie il mazzo in ordine in modo casuale
 
 public:
-    Deck();              // Costruttore
+    Deck();            
      
-    void shuffle();      // Mescola il mazzo 
-    Card drawCard();     // Pesca una carta
-    int cardsLeft();     // Quante carte rimangono
-    void reset();        // Rigenera e rimescola
+    void mescola();   
+    Card pescaCarta();
+    int carteRimanenti();   
+    void reset();        // rigenera e rimescola il mazzo
 };
