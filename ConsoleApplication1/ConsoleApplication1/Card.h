@@ -15,8 +15,17 @@ public:
 
     int getSuit();//restituisce il seme
     int getRank();//restituisce il valorw
-    void setSuit(int s); //imposta il seme
-    void setRank(int r);//imposta il valore
 
+   //void setSuit(int s); //imposta il seme
+   // void setRank(int r);//imposta il valore
+  
+    bool getCoperta(); // restituisce true se la carta è coperta (non visibile)
+   
+
+    void scopriCarta(); // rende la carta visibile
+    void copriCarta();  // non la rende visibile
+
+    int getValoreBlackjack();// restituisce il valore della carta nel blackjack
+   
     string toString();
 };

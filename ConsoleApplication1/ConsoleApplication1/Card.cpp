@@ -26,17 +26,50 @@ int Card::getRank() {
     return this->rank;
 }
 
+bool Card::getCoperta()
+{
+    return this->coperta;
+
+}
+// rende la carta visibile ai giocatori
+void Card::scopriCarta()
+{
+    this->coperta = false;
+}
+// nasconde la carta (faccia in giù)
+void Card::copriCarta()
+{
+    this->coperta = true;
+}
+
+int Card::getValoreBlackjack()
+{
+   
+    // Asso
+    if (this->rank == 1) {
+        return 11;
+    }
+
+    // Figure
+    if (this->rank >= 11 && this->rank <= 13) {
+        return 10;
+    }
+
+    //carte normali
+    return this->rank;
+}
+
 //imposta il sme;
-void Card::setSuit(int s){
-
-    this->suit = s;
-}
-
-//imposta il valore
-void Card::setRank(int r){
-
-    this->rank = r;
-}
+//void Card::setSuit(int s){
+//
+//    this->suit = s;
+//}
+//
+////imposta il valore
+//void Card::setRank(int r){
+//
+//    this->rank = r;
+//}
 
 
 string Card::toString(){

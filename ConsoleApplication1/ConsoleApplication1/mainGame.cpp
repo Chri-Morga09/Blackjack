@@ -1,41 +1,43 @@
-#include "Game.h"
 #include <iostream>
+#include "Game.h"
+
 using namespace std;
 
-int mainGame() {    
+int mainGame() {
+
     Game gioco;
+
     int risposta;
-    cout << "TEST CLASSE GAME" << endl;
-    gioco.iniziaGioco();
-    gioco.mostraStato();
-    gioco.turnoGiocatore();
-    gioco.turnoBanco();
-    gioco.determinaVincitore();
 
     do {
 
+        gioco.distribuisciCarte();
 
-        cout << "Vuoi giocare ancora?" << endl;
-        cout << "1 == si" << endl;
-        cout << "2 == no" << endl;
+        gioco.turnoGiocatore();
+
+        gioco.turnoBanco();
+
+        gioco.determinaVincitore();
+
+        cout << endl << "Vuoi giocare ancora?" << endl;
+        cout << "1 = Si" << endl;
+        cout << "2 = No" << endl;
+
         cin >> risposta;
-        if (risposta == 1)
-        {
-            gioco.resetPartita();
-            gioco.iniziaGioco();
-            gioco.mostraStato();
-            gioco.turnoGiocatore();
-            gioco.turnoBanco();
-            gioco.determinaVincitore();
-        }
-        if (risposta != 1 && risposta != 2)
-        {
-            cout << "scelta non valida. Reinseriscila" << endl;
-        }
-        
-    } while (risposta != 2);
-    
 
+        while (risposta != 1 &&risposta != 2) {
+
+            cout << "Scelta non valida. Reinserisci: ";
+
+            cin >> risposta;
+        }
+
+        if (risposta == 1) {
+
+            gioco.resetPartita();
+        }
+
+    } while (risposta != 2);
 
     return 0;
 }

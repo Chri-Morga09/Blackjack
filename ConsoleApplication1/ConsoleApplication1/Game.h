@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-#include "Deck.h"
+#include "Banco.h"
 #include "Player.h"
 using namespace std;
 
@@ -8,19 +8,18 @@ class Game {
 private:
     Deck mazzo;
     Player giocatore;
-    Player banco;
-    int puntataCorrente;
+    Banco banco;
     bool partitaInCorso;
-    void distribuisciCarte();
-    void aggiornaPunteggi();
+
 
 public:
     Game();
-    void iniziaGioco();
+    void distribuisciCarte();
     void turnoGiocatore();
     void turnoBanco();
-    void determinaVincitore();
-    void mostraStato();
+    int determinaVincitore();
     bool continuaPartita();
     void resetPartita();
+    Player& getGiocatore();
+    Banco& getBanco();
 };
