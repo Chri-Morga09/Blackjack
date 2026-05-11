@@ -6,8 +6,9 @@ using namespace std;
 
 class Mano {
 private:
-    Card carte[7];  // le carte dela mano, massimo 7
+    Card carte[12];  // le carte dela mano, massimo 12
     int numCarte;   // quante carte ho in mano
+    bool coperta;  //attributo stato carta;
 
 public:
     Mano();                      // costruttore, parto senza carte
