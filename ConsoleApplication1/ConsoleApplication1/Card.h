@@ -7,6 +7,7 @@ class Card {
 private:
      int suit; //seme della carta
     int rank;  //valire della carta
+    bool coperta;  //attributo stato carta;
 
 public:
     Card();  //costruttore vuoto che crea carta di default
