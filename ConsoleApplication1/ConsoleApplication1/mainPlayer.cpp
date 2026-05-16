@@ -7,21 +7,19 @@ int mainPlayer()
 {
 	cout << "TEST CLASSE PLAYER" << endl;
 	Player giocatore1 = Player("Alessandro");
-
 	Deck mazzo;
-	giocatore1.vincitaFiche(200);
-
-
-	giocatore1.perditaFiche(100);
-
+	int p;
+	cout << "Quanto vuoi puntare?";
+	cout << " Fiche= " << giocatore1.getFiche() << endl;
+	cin >> p;
+	giocatore1.Puntata(p);
 
 	giocatore1.aggiungiCarta(mazzo);
+	giocatore1.aggiungiCarta(mazzo);
+	cout << giocatore1.ToString() << endl;
 
-
-	std::string nome1 = giocatore1.getNome();
-	int fiche1 = giocatore1.getFiche();
-	cout<<giocatore1.ToString();
-
+	giocatore1.vincitaFiche();
+	cout << giocatore1.getFiche();
 
 	return 0;
 }

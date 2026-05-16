@@ -51,6 +51,26 @@ int Mano::calcolaValore() {
     return totale;
 }
 
+bool Mano::sballato()
+{
+    bool sballato = false;
+    if (this->calcolaValore() > 21)
+    {
+        sballato = true;
+    }
+    return sballato;
+}
+
+bool Mano::blackjack()
+{
+    bool blackjack = false;
+    if (this->calcolaValore() == 21)
+    {
+        blackjack = true;
+    }
+    return blackjack;
+}
+
 // svuoto la mano, azzero il contatore
 void Mano::svuota() {
 
