@@ -15,7 +15,15 @@ Mano& Banco::getMano() {
 
 bool Banco::devePescare() {
 
-    return mano.calcolaValore() < 17;
+    if (mano.calcolaValore() < 17)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
 }
 
 void Banco::svuotaMano() {

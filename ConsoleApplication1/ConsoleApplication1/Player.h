@@ -1,13 +1,13 @@
 #pragma once
 #include"Deck.h"
+#include "Mano.h"
 #include <string>
 class Player {
 
 private:
-	
+	Mano manoGiocatore;
 	std::string nome;
 	int fiche;
-	int ValoreManoAttuale;
 	int puntata;
 public:
 	Player();

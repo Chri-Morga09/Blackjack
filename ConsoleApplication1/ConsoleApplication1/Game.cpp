@@ -18,22 +18,22 @@ int Game::determinaVincitore() {
 
     if (valoreGiocatore > 21) {
 
-        return -1;
+        return -1; //giocatore ha perso
     }
 
     if (valoreBanco > 21) {
 
-        return 1;
+        return 1; //banco ha sballato
     }
 
     if (valoreGiocatore > valoreBanco) {
 
-        return 1;
+        return 1; //giocatore ha vinto
     }
 
     if (valoreBanco > valoreGiocatore) {
 
-        return -1;
+        return -1; //giocatore ha perso
     }
 
     return 0;

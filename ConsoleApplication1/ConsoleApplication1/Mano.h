@@ -16,6 +16,8 @@ public:
     Card getCarta(int i);        // prendo la carta in posizione i
     int getNumCarte();           // quante carte ho
     int calcolaValore();         // calcola il totale dele carte
+    bool sballato();  //ritorna true se hai sballato
+    bool blackjack();  //ritorna true se hai fatto blackjack
     void svuota();               // svuoto la mano
     string toString();           // stampa le carte
 };

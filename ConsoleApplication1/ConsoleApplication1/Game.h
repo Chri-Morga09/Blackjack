@@ -20,6 +20,6 @@ public:
     int determinaVincitore();
     bool continuaPartita();
     void resetPartita();
-    Player& getGiocatore();
-    Banco& getBanco();
+    Player& getGiocatore(); //riceve oggetto originale senza crearne una copia
+    Banco& getBanco(); //riceve oggetto originale senza crearne una copia
 };

@@ -5,10 +5,11 @@
 
 Player::Player()
 {
+	// le fiche partono predefinite da zero
 	this->nome;
 	this->fiche = 100;
 	this->puntata = 0;
-	this->ValoreManoAttuale = 0;
+
 }
 
 Player::Player(std::string nome)
@@ -16,7 +17,6 @@ Player::Player(std::string nome)
 	this->nome = nome;
 	this->fiche = 100;
 	this->puntata = 0;
-	this->ValoreManoAttuale = 0;
 }
 
 void Player::vincitaFiche()
@@ -44,21 +44,12 @@ void Player::Puntata(int valore)
 }
 void Player::aggiungiCarta(Deck& mazzo)
 {
-	int valore = mazzo.pescaCarta().getRank();
-	if (valore > 10)      
-	{
-		valore = 10;       // il valore di J/Q/R vale sempre 10
-	}
-	this->ValoreManoAttuale += valore;
-	if (valore == 1)
-	{
-		if (this->ValoreManoAttuale + 10 <= 21)
-			this->ValoreManoAttuale += 10; 
-	}
+	this->manoGiocatore.aggiungiCarta(mazzo.pescaCarta());
+
 }
 void Player::svuotaMano()
 {
-	this->ValoreManoAttuale = 0;
+	this->manoGiocatore.svuota();
 }
 
 int Player::getFiche()
@@ -67,7 +58,7 @@ int Player::getFiche()
 }
 int Player::getValoreManoAttuale()
 {
-	return this->ValoreManoAttuale;
+	return this->manoGiocatore.calcolaValore();
 }int Player::getPuntata()
 {
 	return this->puntata;
@@ -79,7 +70,8 @@ std::string Player::getNome()
 std::string Player::ToString()
 {
 	std::string s;
-	s = "nome: " +this->nome +" fiche: " + std::to_string(this->fiche) + " valore carte attuale: " + std::to_string(this->ValoreManoAttuale);
+	s = "nome: " + this->nome + " fiche: " + std::to_string(this->fiche) + " Puntata= " + std::to_string(this->puntata);
+	s += this->manoGiocatore.toString();
 	return s;
 
 }
