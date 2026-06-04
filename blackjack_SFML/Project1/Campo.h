@@ -118,25 +118,6 @@ public:
     void aggiungiNumero(Posizione posizione, int numero);
     void aggiungiSimbolo(Posizione posizione, wchar_t simbolo);
 
-    void aggiungiLineaOrizzontaleWChar(
-        Posizione inizio,
-        int colonnaFine,
-        wchar_t carattere
-    );
-
-    void aggiungiRettangoloVuotoWChar(
-        Posizione posizione,
-        int larghezza,
-        int altezza
-    );
-
-    void aggiungiRettangoloPienoWChar(
-        Posizione posizione,
-        int larghezza,
-        int altezza,
-        wchar_t carattere
-    );
-
     void aggiungiLinea(Posizione posizioneInizio,
         Posizione posizioneFine,
         sf::Color colore,

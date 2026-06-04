@@ -80,7 +80,7 @@ void GameEngine::aggiungiSfondo() {
     ui.aggiungiImmagine(Posizione(RIGA_BANCO + 1, COL_BANCO + 4), "./images/retroRosso.png", 0.5f, 0.5f);
 
     // Giocatore
-    ui.aggiungiRettangoloVuotoWChar(Posizione(RIGA_GIOCATORE, COL_GIOCATORE), 12, 5);
+    ui.aggiungiRettangoloVuoto(Posizione(RIGA_GIOCATORE, COL_GIOCATORE), 12, 5, sf::Color::Yellow);
     ui.aggiungiTesto(Posizione(RIGA_GIOCATORE + 2, COL_GIOCATORE + 3), L"CARTE");
     ui.aggiungiTesto(Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE), L"Giocatore: " + nomeGiocatore);
     for (int c = 0; c < carteGiocatore; c++) {

@@ -55,7 +55,6 @@ int main() {
     ui.aggiungiTestoAlCentro(RIGA_TITOLO_MAIN, L"BLACKJACK - TEST INTERFACCIA");
 
     ui.aggiungiTestoAlCentro(RIGA_DOMANDA_NOME-3, L"Benvenuto " + nomeGiocatore + L" !");
-
     ui.aggiungiTestoAlCentro(RIGA_DOMANDA_NOME-1, L"In queso esempio per girare una carta premi il tasto 's' ");
     ui.aggiungiTestoAlCentro(RIGA_DOMANDA_NOME, L"premi ESC per terminare");
     ui.aggiungiTestoAlCentro(RIGA_DOMANDA_NOME+1, L"Premi un tasto per iniziare a giocare");

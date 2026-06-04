@@ -46,25 +46,6 @@ public:
 
     void aggiungiSimbolo(Posizione posizione, wchar_t simbolo);
 
-    void aggiungiLineaOrizzontaleWChar(
-        Posizione inizio,
-        int colonnaFine,
-        wchar_t carattere
-    );
-
-    void aggiungiRettangoloVuotoWChar(
-        Posizione posizione,
-        int larghezza,
-        int altezza
-    );
-
-    void aggiungiRettangoloPienoWChar(
-        Posizione posizione,
-        int larghezza,
-        int altezza,
-        wchar_t carattere
-    );
-
     void aggiungiLinea(Posizione posizioneInizio,
         Posizione posizioneFine,
         sf::Color colore,
@@ -119,7 +100,7 @@ public:
     );
 
     // ========================================================
-	// Input dei caratteri da tastiera
+	// Input di un tasto/carattere da tastiera
     // 
     // I metodi seguenti lavorano con il tipo int invece del tipo char perchè
     // non si vogliono leggere solo caratteri, ma anche :

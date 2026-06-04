@@ -4,8 +4,7 @@
 //  Costruttore
 // ============================================================
 InterfacciaUtente::InterfacciaUtente(Campo& campo, Tastiera& tastiera)
-    : campo(campo), tastiera(tastiera)
-{
+    : campo(campo), tastiera(tastiera) {
 }
 
 // ============================================================
@@ -49,55 +48,24 @@ void InterfacciaUtente::aggiungiSimbolo(Posizione posizione, wchar_t simbolo) {
     campo.aggiungiTesto(posizione, testo);
 }
 
-void InterfacciaUtente::aggiungiLineaOrizzontaleWChar(
-    Posizione inizio,
-    int colonnaFine,
-    wchar_t carattere
-) {
-    campo.aggiungiLineaOrizzontaleWChar(inizio, colonnaFine, carattere);
-}
-
-void InterfacciaUtente::aggiungiRettangoloVuotoWChar(
-    Posizione posizione,
-    int larghezza,
-    int altezza
-) {
-    campo.aggiungiRettangoloVuotoWChar(posizione, larghezza, altezza);
-}
-
-void InterfacciaUtente::aggiungiRettangoloPienoWChar(
-    Posizione posizione,
-    int larghezza,
-    int altezza,
-    wchar_t carattere
-) {
-    campo.aggiungiRettangoloPienoWChar(posizione, larghezza, altezza, carattere);
-}
-
-void InterfacciaUtente::aggiungiLinea(Posizione posizioneInizio, Posizione posizioneFine, sf::Color colore, float spessore)
-{
+void InterfacciaUtente::aggiungiLinea(Posizione posizioneInizio, Posizione posizioneFine, sf::Color colore, float spessore) {
     campo.aggiungiLinea(posizioneInizio, posizioneFine, colore, spessore);
 }
 
 void InterfacciaUtente::aggiungiCerchio(Posizione centro, float raggio, sf::Color colore)
 {
     campo.aggiungiCerchio(centro, raggio, colore);
-
 }
 
-void InterfacciaUtente::aggiungiCerchioVuoto(Posizione centro, float raggio, sf::Color colore, float spessore)
-{
+void InterfacciaUtente::aggiungiCerchioVuoto(Posizione centro, float raggio, sf::Color colore, float spessore) {
     campo.aggiungiCerchioVuoto(centro, raggio, colore, spessore);
-
 }
 
-void InterfacciaUtente::aggiungiRettangolo(Posizione angoloAltoSinistra, int larghezza, int altezza, sf::Color colore)
-{
+void InterfacciaUtente::aggiungiRettangolo(Posizione angoloAltoSinistra, int larghezza, int altezza, sf::Color colore) {
     campo.aggiungiRettangolo(angoloAltoSinistra, larghezza, altezza, colore);
-
 }
-void InterfacciaUtente::aggiungiRettangoloVuoto(Posizione angoloAltoSinistra, int larghezza, int altezza, sf::Color colore, float spessore)
-{
+
+void InterfacciaUtente::aggiungiRettangoloVuoto(Posizione angoloAltoSinistra, int larghezza, int altezza, sf::Color colore, float spessore) {
     campo.aggiungiRettangoloVuoto(angoloAltoSinistra, larghezza, altezza, colore, spessore);
 }
 

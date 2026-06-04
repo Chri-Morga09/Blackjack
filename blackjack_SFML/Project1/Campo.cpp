@@ -120,64 +120,6 @@ void Campo::aggiungiSimbolo(Posizione posizione, wchar_t simbolo) {
     aggiungiTesto(posizione, testo);
 }
 
-void Campo::aggiungiLineaOrizzontaleWChar(
-    Posizione inizio,
-    int colonnaFine,
-    wchar_t carattere
-) {
-    int c;
-
-    for (c = inizio.getColonna(); c <= colonnaFine; c++) {
-        Posizione corrente(inizio.getRiga(), c);
-        aggiungiSimbolo(corrente, carattere);
-    }
-}
-
-void Campo::aggiungiRettangoloVuotoWChar(
-    Posizione posizione,
-    int larghezza,
-    int altezza
-) {
-    int r;
-    int c;
-    int riga;
-    int colonna;
-
-    riga = posizione.getRiga();
-    colonna = posizione.getColonna();
-
-    for (c = colonna; c < colonna + larghezza; c++) {
-        aggiungiSimbolo(Posizione(riga, c), L'-');
-        aggiungiSimbolo(Posizione(riga + altezza - 1, c), L'-');
-    }
-
-    for (r = riga; r < riga + altezza; r++) {
-        aggiungiSimbolo(Posizione(r, colonna), L'|');
-        aggiungiSimbolo(Posizione(r, colonna + larghezza - 1), L'|');
-    }
-}
-
-void Campo::aggiungiRettangoloPienoWChar(
-    Posizione posizione,
-    int larghezza,
-    int altezza,
-    wchar_t carattere
-) {
-    int r;
-    int c;
-    int riga;
-    int colonna;
-
-    riga = posizione.getRiga();
-    colonna = posizione.getColonna();
-
-    for (r = riga; r < riga + altezza; r++) {
-        for (c = colonna; c < colonna + larghezza; c++) {
-            aggiungiSimbolo(Posizione(r, c), carattere);
-        }
-    }
-}
-
 void Campo::aggiungiLinea(Posizione posizioneInizio,
     Posizione posizioneFine,
     sf::Color colore,
