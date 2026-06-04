@@ -29,14 +29,21 @@ GameEngine::GameEngine(InterfacciaUtente& ui, wstring nomeGiocatore)
     this->carteGiocatore = 0;
 }
 
+int GameEngine::getCarteGiocatore()
+{
+    return carteGiocatore;
+}
+
 void GameEngine::run() {
     bool continua = true;
     int risposta;
 
+    // In questo ciclo di gioco, 
     while (continua == true) {
 
-		// In questo ciclo di gioco, prima si prepara la scena da mostrare al giocatore (mostraCampoGioco)
-		mostraCampoGioco();
+		// prima si prepara la scena da mostrare al giocatore (mostraCampoGioco)
+		// con la visualizzazione della domanda "Vuoi una carta?".
+		disegnaCampoEDomanda(L"Vuoi una carta? (s/n):");
 
 		// Poi si aspetta la risposta del giocatore (leggiTastoBloccante) e si agisce di conseguenza.
         risposta = ui.leggiTastoBloccante();
@@ -56,14 +63,7 @@ void GameEngine::run() {
     }
 }
 
-int GameEngine::getCarteGiocatore()
-{
-    return carteGiocatore;
-}
-
 void GameEngine::aggiungiSfondo() {
-    ui.pulisci();
-
     // Titolo
     ui.aggiungiTestoAlCentro(RIGA_TITOLO, L"BLACKJACK");
 
@@ -83,26 +83,23 @@ void GameEngine::aggiungiSfondo() {
     ui.aggiungiRettangoloVuotoWChar(Posizione(RIGA_GIOCATORE, COL_GIOCATORE), 12, 5);
     ui.aggiungiTesto(Posizione(RIGA_GIOCATORE + 2, COL_GIOCATORE + 3), L"CARTE");
     ui.aggiungiTesto(Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE), L"Giocatore: " + nomeGiocatore);
+    for (int c = 0; c < carteGiocatore; c++) {
+        ui.aggiungiImmagine(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
+    }
 
     // Numero carte
     ui.aggiungiTesto(Posizione(RIGA_GIOCATORE + 8, COL_GIOCATORE), L"Carte ricevute:");
     ui.aggiungiNumero(Posizione(RIGA_GIOCATORE + 8, COL_GIOCATORE + 17), carteGiocatore);
 }
 
-void GameEngine::aggiungiCarteGiocatore()
-{
-    for (int c = 0; c < carteGiocatore; c++) {
-        ui.aggiungiImmagine(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
-	}
-}
 
-void GameEngine::mostraCampoGioco()
+void GameEngine::disegnaCampoEDomanda(wstring domanda)
 {
     ui.pulisci();
 
+    // si aggiunge lo sfondo con le carte del giocatore,
     aggiungiSfondo();
-    aggiungiCarteGiocatore();
-    ui.aggiungiTesto(Posizione(RIGA_DOMANDA, COL_DOMANDA), L"Vuoi una carta? (s/n):");
+    ui.aggiungiTesto(Posizione(RIGA_DOMANDA, COL_DOMANDA), domanda);
 
     ui.disegna();
 }
@@ -122,9 +119,9 @@ void GameEngine::spostaCartaGiocatore(Posizione inizio, Posizione fine)
 		// In ogni passo dell'animazione, si pulisce la schermata
         ui.pulisci();
 
-        // si aggiunge lo sfondo e le carte del giocatore,
+        // si aggiunge lo sfondo con le carte del giocatore,
         aggiungiSfondo();
-        aggiungiCarteGiocatore();
+
 		// e si aggiunge la carta in movimento alla nuova posizione.
         ui.aggiungiImmagine(x, y, "./images/AssoPicche.png", 0.5f, 0.5f);
 

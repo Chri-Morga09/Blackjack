@@ -224,3 +224,7 @@ int InterfacciaUtente::getLarghezza() {
 int InterfacciaUtente::getAltezza() {
     return campo.getAltezza();
 }
+
+bool InterfacciaUtente::isAperta() {
+    return campo.isAperta();
+}

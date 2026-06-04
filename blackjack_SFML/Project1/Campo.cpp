@@ -25,10 +25,6 @@ Campo::~Campo() {
     finestra.close();
 }
 
-void Campo::caricaFont(string fontPath) {
-    font.loadFromFile(fontPath);
-}
-
 float Campo::colonnaToX(int colonna) {
     return (float)(colonna * LARGHEZZA_CELLA);
 }
@@ -299,4 +295,24 @@ bool Campo::pollEvent(sf::Event& ev) {
 
 bool Campo::waitEvent(sf::Event& ev) {
     return finestra.waitEvent(ev);
+}
+
+// ============================================================
+//  Helper interno — caricamento font con fallback di sistema
+// ============================================================
+
+void Campo::caricaFont(std::string fontPath)
+{
+    if (this->font.loadFromFile(fontPath))
+        return;
+
+    // Fallback su font monospace di sistema (Windows / Linux / macOS)
+    bool caricato =
+        this->font.loadFromFile("C:/Windows/Fonts/consola.ttf") ||
+        this->font.loadFromFile("C:/Windows/Fonts/cour.ttf") ||
+        this->font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf") ||
+        this->font.loadFromFile("/System/Library/Fonts/Courier New.ttf");
+
+    if (!caricato)
+        exit(1);   // nessun font disponibile: impossibile proseguire
 }

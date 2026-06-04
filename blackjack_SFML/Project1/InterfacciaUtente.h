@@ -159,6 +159,8 @@ public:
     int getLarghezza();
     int getAltezza();
 
+    bool isAperta();
+
 private:
     Campo& campo;
     Tastiera& tastiera;

@@ -26,7 +26,6 @@ private:
     int carteGiocatore;
 
     void aggiungiSfondo();
-    void aggiungiCarteGiocatore();
-    void mostraCampoGioco();
+    void disegnaCampoEDomanda(wstring domanda);
 	void spostaCartaGiocatore(Posizione inizio, Posizione fine);
 };
