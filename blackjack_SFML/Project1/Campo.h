@@ -2,13 +2,19 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "Posizione.h"
+#include "Punto.h"
 
 using namespace std;
-
 
 const int LARGHEZZA_CELLA = 20;
 const int ALTEZZA_CELLA = 24;
 
+// costanti con valori centro, alto, basso, sinistra, destra
+const int CENTRO = 0;
+const int ALTO = 1;
+const int BASSO = -1;
+const int SINISTRA = -2;
+const int DESTRA = 2;
 
 // ============================================================
 // Palette colori (equivalente Windows Terminal)
@@ -110,45 +116,73 @@ public:
     // Da chiamare alla fine di ogni frame.
     void disegna();
 
-	// -─ Metodi di disegno ──────────────────────────────────────
-    
-    void aggiungiTesto(Posizione posizione, wstring testo);
-    void aggiungiTestoAlCentro(int riga, wstring testo);
+    // -─ Metodi di disegno ──────────────────────────────────────
 
-    void aggiungiNumero(Posizione posizione, int numero);
-    void aggiungiSimbolo(Posizione posizione, wchar_t simbolo);
+    void aggiungiTesto(Punto punto, wstring testo);
+    void aggiungiTestoRigCol(Posizione posizione, wstring testo);
+    void aggiungiTestoAlCentro(int pixY, wstring testo);
+    void aggiungiTestoAlCentroRigCol(int riga, wstring testo);
 
-    void aggiungiLinea(Posizione posizioneInizio,
+    void aggiungiNumero(Punto punto, int numero);
+    void aggiungiNumeroRigCol(Posizione posizione, int numero);
+    void aggiungiSimbolo(Punto punto, wchar_t simbolo);
+    void aggiungiSimboloRigCol(Posizione posizione, wchar_t simbolo);
+
+    void aggiungiLinea(Punto puntoInizio,
+        Punto puntoFine,
+        sf::Color colore,
+        float spessore);
+    void aggiungiLineaRigCol(Posizione posizioneInizio,
         Posizione posizioneFine,
         sf::Color colore,
         float spessore);
 
-    void aggiungiCerchio(Posizione centro,
+    void aggiungiCerchio(Punto centro,
+        float raggio,
+        sf::Color colore);
+    void aggiungiCerchioRigCol(Posizione centro,
         float raggio,
         sf::Color colore);
 
-    // Cerchio vuoto (solo bordo) con centro (cx,cy).
-    void aggiungiCerchioVuoto(Posizione centro,
+    // Cerchio vuoto (solo bordo) con centro (centro).
+    void aggiungiCerchioVuoto(Punto centro,
+        float raggio,
+        sf::Color colore,
+        float spessore = 1.0f);
+    void aggiungiCerchioVuotoRigCol(Posizione centro,
         float raggio,
         sf::Color colore,
         float spessore = 1.0f);
 
-    // Rettangolo pieno. (x,y) è l'angolo in alto a sinistra.
-    void aggiungiRettangolo(Posizione angoloAltoSinistra,
+    // Rettangolo pieno, verticeAltoSinistra è il vertice in alto a sinistra.
+    void aggiungiRettangolo(Punto verticeAltoSinistra,
+        int larghezza, int altezza,
+        sf::Color colore);
+    void aggiungiRettangoloRigCol(Posizione verticeAltoSinistra,
         int larghezza, int altezza,
         sf::Color colore);
 
     // Rettangolo vuoto (solo bordo).
-    void aggiungiRettangoloVuoto(Posizione angoloAltoSinistra,
+    void aggiungiRettangoloVuoto(Punto verticeAltoSinistra,
+        int larghezza, int altezza,
+        sf::Color colore,
+        float spessore = 1.0f);
+    void aggiungiRettangoloVuotoRigCol(Posizione verticeAltoSinistra,
         int larghezza, int altezza,
         sf::Color colore,
         float spessore = 1.0f);
 
-    void aggiungiImmagine(Posizione posizione, string nomeImmagine, float scalaX, float scalaY);
-    void aggiungiImmagine(float pixX, float pixY, string nomeImmagine, float scalaX, float scalaY);
+	// Immagine (sprite) contenuta nel file nomeImmagine, scalata con scalaX, scalaY
+    // ruotata di angolo rispetto al punto che può essere il centro o
+    // il punto in alto a sinistra.
+    void aggiungiImmagine(Punto punto, string nomeImmagine, float scalaX = 1.0f, float scalaY = 1.0f, float angolo = 270.0f, int puntoRotaz = ALTO);
+    void aggiungiImmagineRigCol(Posizione posizione, string nomeImmagine, float scalaX = 1.0f, float scalaY = 1.0f, float angolo = 270.0f, int puntoRotaz = ALTO);
 
-    void cancellaRiga(Posizione posizione);
-    void cancellaArea(Posizione posizione,
+	void ruota(float angoloDeg);
+    void cancellaArea(Punto punto,
+        int larghezzaPx,
+        int altezzaPx);
+    void cancellaAreaRigCol(Posizione posizione,
         int larghezza,
         int altezza);
 
@@ -156,7 +190,9 @@ public:
     // ── Stato finestra ────────────────────────────────────────
 
     int getLarghezza();
+    int getLarghezzaRigCol();
     int getAltezza();
+    int getAltezzaRigCol();
     bool isAperta();
 
     // ── Gestione eventi (usata da Tastiera) ───────────────────
@@ -179,6 +215,7 @@ private:
 
     int larghezzaPx;
     int altezzaPx;
+	float angoloRotazione;
 
     // ── Helper interni ────────────────────────────────────────
 

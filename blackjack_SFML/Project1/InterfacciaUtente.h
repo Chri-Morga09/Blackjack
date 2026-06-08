@@ -2,6 +2,7 @@
 #include "Campo.h"
 #include "Tastiera.h"
 #include "Posizione.h"
+#include "Punto.h"
 #include <string>
 #include <thread>
 
@@ -38,42 +39,65 @@ public:
     // Prepara quanto deve essere mostrato sul campo da gioco
     // ========================================================
 
-    void aggiungiTesto(Posizione posizione, wstring testo);
-    void aggiungiTestoAlCentro(int riga, wstring testo);
+    void aggiungiTesto(Punto punto, wstring testo);
+    void aggiungiTestoRigCol(Posizione posizione, wstring testo);
+    void aggiungiTestoAlCentro(int pixY, wstring testo);
+    void aggiungiTestoAlCentroRigCol(int riga, wstring testo);
 
-    void aggiungiNumero(Posizione posizione, int numero);
-    void aggiungiNumero(Posizione posizione, double numero);
+    void aggiungiNumero(Punto punto, int numero);
+    void aggiungiNumeroRigCol(Posizione posizione, int numero);
+    void aggiungiNumero(Punto punto, double numero);
+    void aggiungiNumeroRigCol(Posizione posizione, double numero);
 
-    void aggiungiSimbolo(Posizione posizione, wchar_t simbolo);
+    void aggiungiSimbolo(Punto punto, wchar_t simbolo);
+    void aggiungiSimboloRigCol(Posizione posizione, wchar_t simbolo);
 
-    void aggiungiLinea(Posizione posizioneInizio,
+    void aggiungiLinea(Punto puntoInizio,
+        Punto PuntoFine,
+        sf::Color colore,
+        float spessore);
+    void aggiungiLineaRigCol(Posizione posizioneInizio,
         Posizione posizioneFine,
         sf::Color colore,
         float spessore);
 
-    void aggiungiCerchio(Posizione centro,
+    void aggiungiCerchio(Punto punto,
+        float raggio,
+        sf::Color colore);
+    void aggiungiCerchioRigCol(Posizione centro,
         float raggio,
         sf::Color colore);
 
     // Cerchio vuoto (solo bordo) con centro (cx,cy).
-    void aggiungiCerchioVuoto(Posizione centro,
+    void aggiungiCerchioVuoto(Punto centro,
+        float raggio,
+        sf::Color colore,
+        float spessore = 1.0f);
+    void aggiungiCerchioVuotoRigCol(Posizione centro,
         float raggio,
         sf::Color colore,
         float spessore = 1.0f);
 
-    // Rettangolo pieno. (x,y) è l'angolo in alto a sinistra.
-    void aggiungiRettangolo(Posizione angoloAltoSinistra,
+    // Rettangolo pieno. (x,y) è vertice in alto a sinistra.
+    void aggiungiRettangolo(Punto verticeAltoSinistra,
+        int larghezza, int altezza,
+        sf::Color colore);
+    void aggiungiRettangoloRigCol(Posizione verticeAltoSinistra,
         int larghezza, int altezza,
         sf::Color colore);
 
     // Rettangolo vuoto (solo bordo).
-    void aggiungiRettangoloVuoto(Posizione angoloAltoSinistra,
+    void aggiungiRettangoloVuoto(Punto verticeAltoSinistra,
+        int larghezza, int altezza,
+        sf::Color colore,
+        float spessore = 1.0f);
+    void aggiungiRettangoloVuotoRigCol(Posizione verticeAltoSinistra,
         int larghezza, int altezza,
         sf::Color colore,
         float spessore = 1.0f);
 
-    void aggiungiImmagine(Posizione posizione, string nomeImmagine, float scalaX, float scalaY);
-    void aggiungiImmagine(float pixX, float pixY, string nomeImmagine, float scalaX, float scalaY);
+    void aggiungiImmagine(Punto punto, string nomeImmagine, float scalaX = 1.0f, float scalaY = 1, float angolo = 270.0f, int puntoRotaz = ALTO);
+    void aggiungiImmagineRigCol(Posizione posizione, string nomeImmagine, float scalaX = 1.0f, float scalaY = 1, float angolo = 270.0f, int puntoRotaz = ALTO);
 
 	void sleep(int millisecondi);
 
@@ -100,7 +124,7 @@ public:
     );
 
     // ========================================================
-	// Input di un tasto/carattere da tastiera
+	// Input dei caratteri da tastiera
     // 
     // I metodi seguenti lavorano con il tipo int invece del tipo char perchè
     // non si vogliono leggere solo caratteri, ma anche :
@@ -138,9 +162,9 @@ public:
     // ========================================================
 
     int getLarghezza();
+    int getLarghezzaRigCol();
     int getAltezza();
-
-    bool isAperta();
+    int getAltezzaRigCol();
 
 private:
     Campo& campo;

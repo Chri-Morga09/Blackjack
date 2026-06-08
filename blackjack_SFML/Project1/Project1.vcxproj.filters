@@ -33,6 +33,9 @@
     <ClCompile Include="GameEngine.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="Punto.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Posizione.h">
@@ -48,6 +51,9 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="GameEngine.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Punto.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

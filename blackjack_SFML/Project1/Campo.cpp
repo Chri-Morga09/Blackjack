@@ -1,4 +1,5 @@
-#include "Campo.h"
+ï»¿#include "Campo.h"
+#include "InterfacciaUtente.h"
 
 Campo::Campo(
     int larghezzaPx,
@@ -12,7 +13,7 @@ Campo::Campo(
     this->altezzaPx = altezzaPx;
     this->dimFont = dimFont;
     this->coloreSfondo = sfondo;
-
+	this->angoloRotazione = 0.0f;
     finestra.create(
         sf::VideoMode(larghezzaPx, altezzaPx),
         sf::String(titolo)
@@ -37,43 +38,43 @@ void Campo::pulisci() {
     finestra.clear(coloreSfondo);
 }
 
-void Campo::cancellaRiga(Posizione posizione) {
-    cancellaArea(
-        posizione,
-        getLarghezza(),
-        1
-    );
+void Campo::ruota(float angoloDeg)
+{
+    this->angoloRotazione += angoloDeg;
 }
 
-void  Campo::cancellaArea(Posizione posizione,
-    int larghezza,
-    int altezza) {
-
-    float x;
-    float y;
-    float larghezzaPx;
-    float altezzaPx;
+// cancella un rettangolo con vertice in alto a sinistra in (x,y) 
+// e dimensioni larghezzaPx x altezzaPx
+void  Campo::cancellaArea(Punto punto,
+    int larghezzaPx,
+    int altezzaPx) {
 
     sf::RectangleShape rettangolo;
 
-    x = colonnaToX(posizione.getColonna());
-    y = rigaToY(posizione.getRiga());
-
-    larghezzaPx = (float)(larghezza * LARGHEZZA_CELLA);
-    altezzaPx = (float)(altezza * ALTEZZA_CELLA);
-
-    rettangolo.setPosition(x, y);
+    rettangolo.setPosition(punto.getX(), punto.getY());
     rettangolo.setSize(sf::Vector2f(larghezzaPx, altezzaPx));
     rettangolo.setFillColor(coloreSfondo);
 
     finestra.draw(rettangolo);
 }
 
+void  Campo::cancellaAreaRigCol(Posizione posizione,
+    int larghezza,
+    int altezza) {
+
+    int x = colonnaToX(posizione.getColonna());
+    int y = rigaToY(posizione.getRiga());
+    int larghezzaPx = larghezza * LARGHEZZA_CELLA;
+    int altezzaPx = altezza * ALTEZZA_CELLA;
+
+    cancellaArea(Punto(x, y), larghezzaPx, altezzaPx);
+}
+
 void Campo::disegna() {
     finestra.display();
 }
 
-void Campo::aggiungiTesto(Posizione posizione, wstring testo) {
+void Campo::aggiungiTesto(Punto punto, wstring testo) {
     sf::Text oggettoTesto;
 
     oggettoTesto.setFont(font);
@@ -81,149 +82,244 @@ void Campo::aggiungiTesto(Posizione posizione, wstring testo) {
     oggettoTesto.setFillColor(FG_BIANCO);
     oggettoTesto.setString(sf::String(testo));
 
-    oggettoTesto.setPosition(
-        colonnaToX(posizione.getColonna()),
-        rigaToY(posizione.getRiga())
-    );
+	oggettoTesto.setPosition(punto.getX(), punto.getY());
 
     finestra.draw(oggettoTesto);
 }
 
-void Campo::aggiungiTestoAlCentro(int riga, wstring testo) {
+void Campo::aggiungiTestoRigCol(Posizione posizione, wstring testo) {
+    int pixX = colonnaToX(posizione.getColonna());
+    int pixY = rigaToY(posizione.getRiga());
+    aggiungiTesto(Punto(pixX, pixY), testo);
+}
+
+void Campo::aggiungiTestoAlCentro(int pixY, wstring testo) {
     sf::Text oggettoTesto;
 
     oggettoTesto.setFont(font);
     oggettoTesto.setCharacterSize(dimFont);
-    oggettoTesto.setFillColor(FG_BIANCO);
     oggettoTesto.setString(sf::String(testo));
 
     sf::FloatRect bounds = oggettoTesto.getLocalBounds();
 
-    float x;
-    x = ((float)larghezzaPx - bounds.width) / 2.0f;
+    int pixX = ((float)larghezzaPx - bounds.width) / 2.0f;
 
-    oggettoTesto.setPosition(x, rigaToY(riga));
-
-    finestra.draw(oggettoTesto);
+    aggiungiTesto(Punto(pixX, pixY), testo);
 }
 
-void Campo::aggiungiNumero(Posizione posizione, int numero) {
-    aggiungiTesto(posizione, to_wstring(numero));
+void Campo::aggiungiTestoAlCentroRigCol(int riga, wstring testo) {
+    int pixY = rigaToY(riga);
+    aggiungiTestoAlCentro(pixY, testo);
 }
 
-void Campo::aggiungiSimbolo(Posizione posizione, wchar_t simbolo) {
-    wstring testo;
-
-    testo = L"";
-    testo = testo + simbolo;
-
-    aggiungiTesto(posizione, testo);
+void Campo::aggiungiNumero(Punto punto, int numero) {
+    aggiungiTesto(punto, to_wstring(numero));
 }
 
-void Campo::aggiungiLinea(Posizione posizioneInizio,
-    Posizione posizioneFine,
+void Campo::aggiungiNumeroRigCol(Posizione posizione, int numero) {
+    aggiungiTestoRigCol(posizione, to_wstring(numero));
+}
+
+void Campo::aggiungiSimbolo(Punto punto, wchar_t simbolo) {
+    wstring testo = L"" + simbolo;
+    aggiungiTesto(punto, testo);
+}
+
+void Campo::aggiungiSimboloRigCol(Posizione posizione, wchar_t simbolo) {
+    wstring testo = L"" + simbolo;
+    aggiungiTestoRigCol(posizione, testo);
+}
+
+void Campo::aggiungiLinea(Punto puntoInizio,
+    Punto puntoFine,
     sf::Color colore,
     float spessore
 ) {
-    float dx = colonnaToX(posizioneFine.getColonna()) - colonnaToX(posizioneInizio.getColonna());
-    float dy = rigaToY(posizioneFine.getRiga()) - rigaToY(posizioneInizio.getRiga());
+    float dx = puntoFine.getX() - puntoInizio.getX();
+    float dy = puntoFine.getY() - puntoInizio.getY();
     float lungh = std::sqrt(dx * dx + dy * dy);
     float angolo = std::atan2(dy, dx) * 180.0f / static_cast<float>(PIGRECO);
 
     sf::RectangleShape linea(sf::Vector2f(lungh, spessore));
     linea.setFillColor(colore);
     linea.setOrigin(0.0f, spessore / 2.0f);
-    linea.setPosition(colonnaToX(posizioneInizio.getColonna()), rigaToY(posizioneInizio.getRiga()));
+    linea.setPosition(puntoInizio.getX(), puntoInizio.getY());
     linea.setRotation(angolo);
 
     this->finestra.draw(linea);
 }
 
-void Campo::aggiungiCerchio(Posizione centro,
+void Campo::aggiungiLineaRigCol(Posizione posizioneInizio,
+    Posizione posizioneFine,
+    sf::Color colore,
+    float spessore
+) {
+    Punto puntoInizio = Punto(colonnaToX(posizioneInizio.getColonna()), rigaToY(posizioneInizio.getRiga()));
+	Punto puntoFine = Punto(colonnaToX(posizioneFine.getColonna()), rigaToY(posizioneFine.getRiga()));
+    aggiungiLinea(puntoInizio, puntoFine, colore, spessore);
+}
+
+void Campo::aggiungiCerchio(Punto centro,
     float raggio,
-    sf::Color colore) 
-{
-	sf::CircleShape cerchio(raggio);
-    cerchio.setPosition(colonnaToX(centro.getColonna()), rigaToY(centro.getRiga()));
+    sf::Color colore
+) {
+    sf::CircleShape cerchio(raggio);
+    cerchio.setPosition(centro.getX(), centro.getY());
     cerchio.setFillColor(colore);
     this->finestra.draw(cerchio);
 }
 
+void Campo::aggiungiCerchioRigCol(Posizione centro,
+    float raggio,
+    sf::Color colore
+) {
+    Punto centroXY = Punto(colonnaToX(centro.getColonna()), rigaToY(centro.getRiga()));
+    aggiungiCerchio(centroXY, raggio, colore);
+}
+
 // Cerchio vuoto (solo bordo) con centro (cx,cy).
-void Campo::aggiungiCerchioVuoto(Posizione centro,
+void Campo::aggiungiCerchioVuoto(Punto centro,
     float raggio,
     sf::Color colore,
-    float spessore)
-{
-	sf::CircleShape cerchio(raggio);
-    cerchio.setPosition(colonnaToX(centro.getColonna()), rigaToY(centro.getRiga()));
+    float spessore
+) {
+    sf::CircleShape cerchio(raggio);
+    cerchio.setPosition(centro.getX(), centro.getY());
     cerchio.setFillColor(sf::Color::Transparent);
     cerchio.setOutlineColor(colore);
     cerchio.setOutlineThickness(spessore);
-	this->finestra.draw(cerchio);
+    this->finestra.draw(cerchio);
 }
 
-// Rettangolo pieno. (x,y) è l'angolo in alto a sinistra.
-void Campo::aggiungiRettangolo(Posizione angoloAltoSinistra,
-    int larghezza, int altezza,
-    sf::Color colore) 
+void Campo::aggiungiCerchioVuotoRigCol(Posizione centro,
+    float raggio,
+    sf::Color colore,
+    float spessore
+) {
+    Punto centroXY = Punto(colonnaToX(centro.getColonna()), rigaToY(centro.getRiga()));
+	aggiungiCerchioVuoto(centroXY, raggio, colore, spessore);
+}
+
+// Rettangolo pieno. (x,y) Ã¨ l'angolo in alto a sinistra.
+void Campo::aggiungiRettangolo(Punto angoloAltoSinistra,
+    int larghezzaPx, int altezzaPx,
+    sf::Color colore)
 {
-    float larchezzaPx = (float)(larghezza * LARGHEZZA_CELLA);
-    float altezzaPx = (float)(altezza * ALTEZZA_CELLA);
-	sf::RectangleShape rettangolo(sf::Vector2f(larghezzaPx, altezzaPx));
+    sf::RectangleShape rettangolo(sf::Vector2f(larghezzaPx, altezzaPx));
+    rettangolo.setFillColor(colore);
+    rettangolo.setPosition(angoloAltoSinistra.getX(), angoloAltoSinistra.getY());
+    this->finestra.draw(rettangolo);
+}
+
+void Campo::aggiungiRettangoloRigCol(Posizione angoloAltoSinistra,
+    int larghezza, int altezza,
+    sf::Color colore
+) {
+    int larghezzaPx = larghezza * LARGHEZZA_CELLA;
+    int altezzaPx = altezza * ALTEZZA_CELLA;
+    sf::RectangleShape rettangolo(sf::Vector2f(larghezzaPx, altezzaPx));
     rettangolo.setFillColor(colore);
     rettangolo.setPosition(colonnaToX(angoloAltoSinistra.getColonna()), rigaToY(angoloAltoSinistra.getRiga()));
-	this->finestra.draw(rettangolo);
+    this->finestra.draw(rettangolo);
 }
 
 // Rettangolo vuoto (solo bordo).
-void Campo::aggiungiRettangoloVuoto(Posizione angoloAltoSinistra,
-    int larghezza, int altezza,
+void Campo::aggiungiRettangoloVuoto(Punto angoloAltoSinistra,
+    int larghezzaPx, int altezzaPx,
     sf::Color colore,
-    float spessore)
-{
-	float larghezzaPx = (float)(larghezza * LARGHEZZA_CELLA);
-	float altezzaPx = (float)(altezza * ALTEZZA_CELLA);
+    float spessore
+) {
     sf::RectangleShape rettangolo(sf::Vector2f(larghezzaPx, altezzaPx));
     rettangolo.setFillColor(sf::Color::Transparent);
     rettangolo.setOutlineColor(colore);
     rettangolo.setOutlineThickness(spessore);
-    rettangolo.setPosition(colonnaToX(angoloAltoSinistra.getColonna()), rigaToY(angoloAltoSinistra.getRiga()));
-	this->finestra.draw(rettangolo);
+    rettangolo.setPosition(angoloAltoSinistra.getX(), angoloAltoSinistra.getY());
+    this->finestra.draw(rettangolo);
 }
 
-void Campo::aggiungiImmagine(Posizione posizione, string nomeImmagine, float scalaX, float scalaY) {
-    wstring testo;
-
-    sf::Texture tex;
-    tex.loadFromFile(nomeImmagine);
-    tex.setSmooth(true);
-
-    sf::Sprite sprite(tex);
-    sprite.setScale(scalaX, scalaY);
-    sprite.setPosition(colonnaToX(posizione.getColonna()), rigaToY(posizione.getRiga()));
-    this->finestra.draw(sprite);
+void Campo::aggiungiRettangoloVuotoRigCol(Posizione angoloAltoSinistra,
+    int larghezza, int altezza,
+    sf::Color colore,
+    float spessore)
+{
+    float larghezzaPx = (float)(larghezza * LARGHEZZA_CELLA);
+    float altezzaPx = (float)(altezza * ALTEZZA_CELLA);
+    int pixX = colonnaToX(angoloAltoSinistra.getColonna());
+    int pixY = rigaToY(angoloAltoSinistra.getRiga());
+	aggiungiRettangoloVuoto(Punto(pixX, pixY), larghezzaPx, altezzaPx, colore, spessore);
 }
 
-void Campo::aggiungiImmagine(float pixX, float pixY, string nomeImmagine, float scalaX, float scalaY)
+void Campo::aggiungiImmagine(Punto punto, string nomeImmagine, float scalaX, float scalaY, float angolo, int puntoRotaz)
 {
     wstring testo;
 
     sf::Texture tex;
     tex.loadFromFile(nomeImmagine);
     tex.setSmooth(true);
-
     sf::Sprite sprite(tex);
+
+    // Rettangolo con le dimensioni locali dell'immagine
+    sf::FloatRect bounds = sprite.getLocalBounds();
+	// Imposta l'origine (punto di rotazione) in base al valore di puntoRotaz
+    switch (puntoRotaz) {
+        case CENTRO: 
+            sprite.setOrigin(bounds.width / 2, bounds.height / 2 );
+            break;
+        case ALTO:
+            sprite.setOrigin(bounds.width / 2, 0);
+            break;
+        case BASSO:
+            sprite.setOrigin(bounds.width / 2, bounds.height);
+            break;
+        case DESTRA:
+			sprite.setOrigin(bounds.width, bounds.height / 2);
+            break;
+        case SINISTRA:
+            sprite.setOrigin(0, bounds.height / 2);
+            break;
+    }
+
     sprite.setScale(scalaX, scalaY);
-    sprite.setPosition(pixX, pixY);
+    sprite.setPosition(punto.getX(), punto.getY());
+    sprite.setRotation(angolo+90);
     this->finestra.draw(sprite);
+
+    /******* rettangolo di debug
+    sf::RectangleShape rect;
+    rect.setSize({ bounds.width, bounds.height });
+    rect.setOrigin(sprite.getOrigin());
+    rect.setPosition(sprite.getPosition());
+    rect.setRotation(sprite.getRotation());
+    rect.setScale(sprite.getScale());
+
+    rect.setFillColor(sf::Color::Transparent);
+    rect.setOutlineColor(sf::Color::Red);
+    rect.setOutlineThickness(2.f);
+    this->finestra.draw(rect);
+    ***/
 }
 
+void Campo::aggiungiImmagineRigCol(Posizione posizione, string nomeImmagine, float scalaX, float scalaY, float angolo, int puntoRotaz) {
+    int pixX = colonnaToX(posizione.getColonna());
+    int pixY = rigaToY(posizione.getRiga());
+    aggiungiImmagine(Punto(pixX, pixY), nomeImmagine, scalaX, scalaY, angolo, puntoRotaz);
+}
+
+
+
 int Campo::getLarghezza() {
+    return larghezzaPx;
+}
+
+int Campo::getLarghezzaRigCol() {
     return larghezzaPx / LARGHEZZA_CELLA;
 }
 
 int Campo::getAltezza() {
+    return altezzaPx;
+}
+
+int Campo::getAltezzaRigCol() {
     return altezzaPx / ALTEZZA_CELLA;
 }
 
@@ -240,7 +336,7 @@ bool Campo::waitEvent(sf::Event& ev) {
 }
 
 // ============================================================
-//  Helper interno — caricamento font con fallback di sistema
+//  Helper interno â€” caricamento font con fallback di sistema
 // ============================================================
 
 void Campo::caricaFont(std::string fontPath)

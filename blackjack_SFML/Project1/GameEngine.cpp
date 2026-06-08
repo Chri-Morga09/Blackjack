@@ -68,28 +68,28 @@ void GameEngine::aggiungiSfondo() {
     ui.aggiungiTestoAlCentro(RIGA_TITOLO, L"BLACKJACK");
 
     // Mazzo
-    ui.aggiungiTesto(Posizione(RIGA_MAZZO, COL_MAZZO), L"MAZZO");
-    ui.aggiungiImmagine(Posizione(RIGA_MAZZO + 1, COL_MAZZO), "./images/retroBlu.png", 0.5f, 0.5f);
+    ui.aggiungiTestoRigCol(Posizione(RIGA_MAZZO, COL_MAZZO), L"MAZZO");
+    ui.aggiungiImmagineRigCol(Posizione(RIGA_MAZZO + 1, COL_MAZZO+2), "./images/retroBlu.png", 0.5f, 0.5f);
 
     // Banco
-    ui.aggiungiTesto(Posizione(RIGA_BANCO, COL_BANCO), L"BANCO");
-    ui.aggiungiRettangoloVuoto(Posizione(RIGA_BANCO + 1, COL_BANCO), 12, 5, sf::Color::White);
-    ui.aggiungiTesto(Posizione(RIGA_BANCO + 3, COL_BANCO + 3), L"MAZZO");
-    ui.aggiungiImmagine(Posizione(RIGA_BANCO + 1, COL_BANCO), "./images/retroRosso.png", 0.5f, 0.5f);
-    ui.aggiungiImmagine(Posizione(RIGA_BANCO + 1, COL_BANCO + 2), "./images/retroBlu.png", 0.5f, 0.5f);
-    ui.aggiungiImmagine(Posizione(RIGA_BANCO + 1, COL_BANCO + 4), "./images/retroRosso.png", 0.5f, 0.5f);
+    ui.aggiungiTestoRigCol(Posizione(RIGA_BANCO, COL_BANCO), L"BANCO");
+    ui.aggiungiRettangoloVuotoRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO-3), 14, 5, sf::Color::White);
+    ui.aggiungiTestoRigCol(Posizione(RIGA_BANCO + 3, COL_BANCO + 3), L"MAZZO");
+    ui.aggiungiImmagineRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO), "./images/retroRosso.png", 0.5f, 0.5f);
+    ui.aggiungiImmagineRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO + 2), "./images/retroBlu.png", 0.5f, 0.5f);
+    ui.aggiungiImmagineRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO + 4), "./images/retroRosso.png", 0.5f, 0.5f);
 
     // Giocatore
-    ui.aggiungiRettangoloVuoto(Posizione(RIGA_GIOCATORE, COL_GIOCATORE), 12, 5, sf::Color::Yellow);
-    ui.aggiungiTesto(Posizione(RIGA_GIOCATORE + 2, COL_GIOCATORE + 3), L"CARTE");
-    ui.aggiungiTesto(Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE), L"Giocatore: " + nomeGiocatore);
+    ui.aggiungiRettangoloVuotoRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE-3), 14, 5, sf::Color::Yellow);
+    ui.aggiungiTestoRigCol(Posizione(RIGA_GIOCATORE + 2, COL_GIOCATORE + 3), L"CARTE");
+    ui.aggiungiTestoRigCol(Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE), L"Giocatore: " + nomeGiocatore);
     for (int c = 0; c < carteGiocatore; c++) {
-        ui.aggiungiImmagine(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
+        ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
     }
 
     // Numero carte
-    ui.aggiungiTesto(Posizione(RIGA_GIOCATORE + 8, COL_GIOCATORE), L"Carte ricevute:");
-    ui.aggiungiNumero(Posizione(RIGA_GIOCATORE + 8, COL_GIOCATORE + 17), carteGiocatore);
+    ui.aggiungiTestoRigCol(Posizione(RIGA_GIOCATORE + 8, COL_GIOCATORE), L"Carte ricevute:");
+    ui.aggiungiNumeroRigCol(Posizione(RIGA_GIOCATORE + 8, COL_GIOCATORE + 17), carteGiocatore);
 }
 
 
@@ -99,7 +99,7 @@ void GameEngine::disegnaCampoEDomanda(wstring domanda)
 
     // si aggiunge lo sfondo con le carte del giocatore,
     aggiungiSfondo();
-    ui.aggiungiTesto(Posizione(RIGA_DOMANDA, COL_DOMANDA), domanda);
+    ui.aggiungiTestoRigCol(Posizione(RIGA_DOMANDA, COL_DOMANDA), domanda);
 
     ui.disegna();
 }
@@ -123,7 +123,7 @@ void GameEngine::spostaCartaGiocatore(Posizione inizio, Posizione fine)
         aggiungiSfondo();
 
 		// e si aggiunge la carta in movimento alla nuova posizione.
-        ui.aggiungiImmagine(x, y, "./images/AssoPicche.png", 0.5f, 0.5f);
+        ui.aggiungiImmagine(Punto(x, y), "./images/AssoPicche.png", 0.5f, 0.5f);
 
 		// Si mostra il frame corrente.
         ui.disegna();

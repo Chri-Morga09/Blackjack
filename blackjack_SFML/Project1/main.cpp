@@ -52,12 +52,12 @@ int main() {
 
     ui.pulisci();
 
-    ui.aggiungiTestoAlCentro(RIGA_TITOLO_MAIN, L"BLACKJACK - TEST INTERFACCIA");
+    ui.aggiungiTestoAlCentroRigCol(RIGA_TITOLO_MAIN, L"BLACKJACK - TEST INTERFACCIA");
 
-    ui.aggiungiTestoAlCentro(RIGA_DOMANDA_NOME-3, L"Benvenuto " + nomeGiocatore + L" !");
-    ui.aggiungiTestoAlCentro(RIGA_DOMANDA_NOME-1, L"In queso esempio per girare una carta premi il tasto 's' ");
-    ui.aggiungiTestoAlCentro(RIGA_DOMANDA_NOME, L"premi ESC per terminare");
-    ui.aggiungiTestoAlCentro(RIGA_DOMANDA_NOME+1, L"Premi un tasto per iniziare a giocare");
+    ui.aggiungiTestoAlCentroRigCol(RIGA_DOMANDA_NOME-3, L"Benvenuto " + nomeGiocatore + L" !");
+    ui.aggiungiTestoAlCentroRigCol(RIGA_DOMANDA_NOME-1, L"In queso esempio per girare una carta premi il tasto 's' ");
+    ui.aggiungiTestoAlCentroRigCol(RIGA_DOMANDA_NOME, L"premi ESC per terminare");
+    ui.aggiungiTestoAlCentroRigCol(RIGA_DOMANDA_NOME+1, L"Premi un tasto per iniziare a giocare");
 
     ui.disegna();
 
@@ -76,12 +76,12 @@ int main() {
 
     ui.pulisci();
 
-    ui.aggiungiTestoAlCentro(RIGA_TITOLO_MAIN, L"FINE TEST BLACKJACK");
-    ui.aggiungiTesto(Posizione(8, 8), L"Ciao ");
-    ui.aggiungiTesto(Posizione(8, 14), nomeGiocatore);
-    ui.aggiungiTesto(Posizione(10, 8), L"Hai ricevuto carte:");
-    ui.aggiungiNumero(Posizione(10, 29), gioco.getCarteGiocatore());
-    ui.aggiungiTesto(Posizione(14, 8), L"Premi ESC per terminare.");
+    ui.aggiungiTestoAlCentroRigCol(RIGA_TITOLO_MAIN, L"FINE TEST BLACKJACK");
+    ui.aggiungiTestoRigCol(Posizione(8, 8), L"Ciao ");
+    ui.aggiungiTestoRigCol(Posizione(8, 14), nomeGiocatore);
+    ui.aggiungiTestoRigCol(Posizione(10, 8), L"Hai ricevuto carte:");
+    ui.aggiungiNumeroRigCol(Posizione(10, 29), gioco.getCarteGiocatore());
+    ui.aggiungiTestoRigCol(Posizione(14, 8), L"Premi ESC per terminare.");
 
     ui.disegna();
 
@@ -91,7 +91,7 @@ int main() {
     int tasto;
     do {
         tasto = ui.leggiTastoBloccante();
-    } while (ui.isAperta() && !ui.isEsc(tasto));
+    } while (campo.isAperta() && !ui.isEsc(tasto));
 
     return 0;
 }

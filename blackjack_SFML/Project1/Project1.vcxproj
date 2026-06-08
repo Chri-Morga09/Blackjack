@@ -134,6 +134,7 @@
     <ClCompile Include="InterfacciaUtente.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Posizione.cpp" />
+    <ClCompile Include="Punto.cpp" />
     <ClCompile Include="Tastiera.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="InterfacciaUtente.h" />
     <ClInclude Include="Posizione.h" />
+    <ClInclude Include="Punto.h" />
     <ClInclude Include="Tastiera.h" />
   </ItemGroup>
   <ItemGroup>

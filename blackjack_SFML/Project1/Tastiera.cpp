@@ -223,8 +223,8 @@ wstring Tastiera::leggiStringa(
 ) {
     campo.pulisci();
     if (domanda.length() > 0)
-        campo.aggiungiTesto(posizioneDomanda, domanda);
-    campo.aggiungiTesto(posizioneRisposta, L"> _");
+        campo.aggiungiTestoRigCol(posizioneDomanda, domanda);
+    campo.aggiungiTestoRigCol(posizioneRisposta, L"> _");
     campo.disegna();
 
     wstring testo;
@@ -257,9 +257,9 @@ wstring Tastiera::leggiStringa(
 
         campo.pulisci();
         if (domanda.length() > 0)
-            campo.aggiungiTesto(posizioneDomanda, domanda);
-        campo.cancellaRiga(posizioneRisposta);
-        campo.aggiungiTesto(posizioneRisposta, L"> " + testo + L". ");
+            campo.aggiungiTestoRigCol(posizioneDomanda, domanda);
+        campo.cancellaAreaRigCol(posizioneRisposta, LARGHEZZA_CELLA * 50, ALTEZZA_CELLA);
+        campo.aggiungiTestoRigCol(posizioneRisposta, L"> " + testo + L"_ ");
         campo.disegna();
     }
 
