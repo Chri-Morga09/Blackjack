@@ -27,6 +27,11 @@ GameEngine::GameEngine(InterfacciaUtente& ui, wstring nomeGiocatore)
 {
     this->nomeGiocatore = nomeGiocatore;
     this->carteGiocatore = 0;
+    this->card;
+    this->banco;
+    this->mano;
+    this->giocatore;
+    this->mazzo;
 }
 
 int GameEngine::getCarteGiocatore()
@@ -35,6 +40,8 @@ int GameEngine::getCarteGiocatore()
 }
 
 void GameEngine::run() {
+
+    /*
     bool continua = true;
     int risposta;
 
@@ -61,6 +68,37 @@ void GameEngine::run() {
             continua = false;
         }
     }
+    */
+    
+    int risposta;
+
+    do {
+
+        distribuisciCarte();
+        turnoGiocatore();
+        turnoBanco();
+        determinaVincitore();
+
+        cout << endl << "Vuoi giocare ancora?" << endl;
+        cout << "1 = Si" << endl;
+        cout << "2 = No" << endl;
+
+        cin >> risposta;
+
+        while (risposta != 1 && risposta != 2) {
+
+            cout << "Scelta non valida. Reinserisci: ";
+
+            cin >> risposta;
+        }
+
+        if (risposta == 1) {
+
+            resetPartita();
+        }
+
+    } while (risposta != 2);
+
 }
 
 void GameEngine::aggiungiSfondo() {
@@ -123,7 +161,7 @@ void GameEngine::spostaCartaGiocatore(Posizione inizio, Posizione fine)
         aggiungiSfondo();
 
 		// e si aggiunge la carta in movimento alla nuova posizione.
-        ui.aggiungiImmagine(Punto(x, y), "./images/AssoPicche.png", 0.5f, 0.5f);
+        ui.aggiungiImmagine(Punto(x, y), "./images/retroBlu.png", 0.5f, 0.5f);
 
 		// Si mostra il frame corrente.
         ui.disegna();
@@ -134,4 +172,68 @@ void GameEngine::spostaCartaGiocatore(Posizione inizio, Posizione fine)
         x = x + dx * passo / numPassi;
         y = y + dy * passo / numPassi;
 	}
+}
+
+
+
+void GameEngine::turnoGiocatore() {
+    giocatore.aggiungiCarta(mazzo);
+}
+
+void GameEngine::turnoBanco() {
+    while (banco.devePescare()) {
+
+        banco.aggiungiCarta(mazzo);
+    }
+}
+
+int GameEngine::determinaVincitore() {
+
+    int valoreGiocatore = giocatore.getMano().calcolaValore();
+
+    int valoreBanco = banco.getMano().calcolaValore();
+
+    if (valoreGiocatore > 21) {
+
+        return -1; //giocatore ha perso
+    }
+
+    if (valoreBanco > 21) {
+
+        return 1; //banco ha sballato
+    }
+
+    if (valoreGiocatore > valoreBanco) {
+
+        return 1; //giocatore ha vinto
+    }
+
+    if (valoreBanco > valoreGiocatore) {
+
+        return -1; //giocatore ha perso
+    }
+
+    return 0;
+}
+
+bool GameEngine::continuaPartita() {
+
+    return partitaInCorso;
+}
+
+void GameEngine::resetPartita() {
+
+    giocatore.svuotaMano();
+    banco.svuotaMano();
+    mazzo.reset();
+}
+
+Player& GameEngine::getGiocatore() {
+
+    return giocatore;
+}
+
+Banco& GameEngine::getBanco() {
+
+    return banco;
 }

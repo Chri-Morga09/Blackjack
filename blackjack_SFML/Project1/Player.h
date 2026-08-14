@@ -26,4 +26,5 @@ public:
 
 	std::string ToString();  //per stampare i valori
 
+	Mano& getMano(); //evita copie inutili e permette modifiche dirette
 };

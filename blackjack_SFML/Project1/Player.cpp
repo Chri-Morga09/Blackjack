@@ -75,3 +75,9 @@ std::string Player::ToString()
 	return s;
 
 }
+
+
+Mano& Player::getMano() {
+
+	return manoGiocatore;
+}

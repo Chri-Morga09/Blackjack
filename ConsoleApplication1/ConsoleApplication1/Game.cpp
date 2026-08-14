@@ -12,7 +12,7 @@ void Game::turnoBanco() {
 
 int Game::determinaVincitore() {
 
-    int valoreGiocatore =giocatore.getMano().calcolaValore();
+    int valoreGiocatore = giocatore.getMano().calcolaValore();
 
     int valoreBanco =banco.getMano().calcolaValore();
 
