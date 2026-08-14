@@ -24,7 +24,7 @@ public:
     void run();
 	int getCarteGiocatore();
 
-    void distribuisciCarte();
+    void distribuisciCarteIniziali();
     void turnoGiocatore();
     void turnoBanco();
     int determinaVincitore();

@@ -41,65 +41,51 @@ int GameEngine::getCarteGiocatore()
 
 void GameEngine::run() {
 
-    /*
+
     bool continua = true;
     int risposta;
 
+
+    distribuisciCarteIniziali();
+    
+    
+    int c = 0;
+    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
+    c = 1;
+    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
     // In questo ciclo di gioco, 
     while (continua == true) {
 
-		// prima si prepara la scena da mostrare al giocatore (mostraCampoGioco)
-		// con la visualizzazione della domanda "Vuoi una carta?".
-		disegnaCampoEDomanda(L"Vuoi una carta? (s/n):");
+        // prima si prepara la scena da mostrare al giocatore (mostraCampoGioco)
+        // con la visualizzazione della domanda "Vuoi una carta?".
+        disegnaCampoEDomanda(L"Vuoi una carta? (s/n):");
 
-		// Poi si aspetta la risposta del giocatore (leggiTastoBloccante) e si agisce di conseguenza.
+        // Poi si aspetta la risposta del giocatore (leggiTastoBloccante) e si agisce di conseguenza.
         risposta = ui.leggiTastoBloccante();
 
         if (risposta == 's' || risposta == 'S') {
-			// Se il giocatore vuole una carta, si simula la ricezione di una carta (spostaCartaGiocatore) 
+            // Se il giocatore vuole una carta, si simula la ricezione di una carta (spostaCartaGiocatore) 
             spostaCartaGiocatore(
                 Posizione(RIGA_MAZZO + 1, COL_MAZZO),
                 Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE + (carteGiocatore - 1))
-			);
+            );
             // e si aggiorna il numero di carte ricevute.
             carteGiocatore = carteGiocatore + 1;
+            turnoGiocatore();
         }
         else {
             continua = false;
+            turnoBanco();
+            
         }
+        
     }
-    */
-    
-    int risposta;
-
-    do {
-
-        distribuisciCarte();
-        turnoGiocatore();
-        turnoBanco();
-        determinaVincitore();
-
-        cout << endl << "Vuoi giocare ancora?" << endl;
-        cout << "1 = Si" << endl;
-        cout << "2 = No" << endl;
-
-        cin >> risposta;
-
-        while (risposta != 1 && risposta != 2) {
-
-            cout << "Scelta non valida. Reinserisci: ";
-
-            cin >> risposta;
-        }
-
-        if (risposta == 1) {
-
-            resetPartita();
-        }
-
-    } while (risposta != 2);
-
+    determinaVincitore();
 }
+    
+
+    
+
 
 void GameEngine::aggiungiSfondo() {
     // Titolo
@@ -112,14 +98,14 @@ void GameEngine::aggiungiSfondo() {
     // Banco
     ui.aggiungiTestoRigCol(Posizione(RIGA_BANCO, COL_BANCO), L"BANCO");
     ui.aggiungiRettangoloVuotoRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO-3), 14, 5, sf::Color::White);
-    ui.aggiungiTestoRigCol(Posizione(RIGA_BANCO + 3, COL_BANCO + 3), L"MAZZO");
-    ui.aggiungiImmagineRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO), "./images/retroRosso.png", 0.5f, 0.5f);
+    ui.aggiungiTestoRigCol(Posizione(RIGA_BANCO + 3, COL_BANCO + 3), L"MANO");
+    
+    ui.aggiungiImmagineRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO), "./images/assoPicche.png", 0.5f, 0.5f);
     ui.aggiungiImmagineRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO + 2), "./images/retroBlu.png", 0.5f, 0.5f);
-    ui.aggiungiImmagineRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO + 4), "./images/retroRosso.png", 0.5f, 0.5f);
 
     // Giocatore
     ui.aggiungiRettangoloVuotoRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE-3), 14, 5, sf::Color::Yellow);
-    ui.aggiungiTestoRigCol(Posizione(RIGA_GIOCATORE + 2, COL_GIOCATORE + 3), L"CARTE");
+    ui.aggiungiTestoRigCol(Posizione(RIGA_GIOCATORE + 2, COL_GIOCATORE + 3), L"MANO");
     ui.aggiungiTestoRigCol(Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE), L"Giocatore: " + nomeGiocatore);
     for (int c = 0; c < carteGiocatore; c++) {
         ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
@@ -236,4 +222,17 @@ Player& GameEngine::getGiocatore() {
 Banco& GameEngine::getBanco() {
 
     return banco;
+}
+
+
+
+void GameEngine::distribuisciCarteIniziali() {
+
+    giocatore.aggiungiCarta(mazzo);
+    giocatore.aggiungiCarta(mazzo);
+    carteGiocatore = carteGiocatore + 2;
+    banco.aggiungiCarta(mazzo);
+    banco.aggiungiCarta(mazzo);
+    
+
 }

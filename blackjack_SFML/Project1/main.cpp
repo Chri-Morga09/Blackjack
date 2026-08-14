@@ -81,6 +81,18 @@ int main() {
     ui.aggiungiTestoRigCol(Posizione(8, 14), nomeGiocatore);
     ui.aggiungiTestoRigCol(Posizione(10, 8), L"Hai ricevuto carte:");
     ui.aggiungiNumeroRigCol(Posizione(10, 29), gioco.getCarteGiocatore());
+
+    float num = gioco.determinaVincitore();
+    if (num == 1)
+    {
+        ui.aggiungiTestoRigCol(Posizione(12, 8), L"Hai vinto!");
+    }
+    else
+    {
+        ui.aggiungiTestoRigCol(Posizione(12, 8), L"Hai perso!");
+    }
+
+
     ui.aggiungiTestoRigCol(Posizione(14, 8), L"Premi ESC per terminare.");
 
     ui.disegna();
