@@ -129,18 +129,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Banco.cpp" />
     <ClCompile Include="Campo.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Deck.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="InterfacciaUtente.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mano.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Posizione.cpp" />
     <ClCompile Include="Punto.cpp" />
     <ClCompile Include="Tastiera.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Banco.h" />
     <ClInclude Include="Campo.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="Deck.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="InterfacciaUtente.h" />
+    <ClInclude Include="Mano.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Posizione.h" />
     <ClInclude Include="Punto.h" />
     <ClInclude Include="Tastiera.h" />
