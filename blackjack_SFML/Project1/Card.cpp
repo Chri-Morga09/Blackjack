@@ -59,7 +59,7 @@ int Card::getValoreBlackjack()
     return this->rank;
 }
 
-//imposta il sme;
+//imposta il seme;
 //void Card::setSuit(int s){
 //
 //    this->suit = s;

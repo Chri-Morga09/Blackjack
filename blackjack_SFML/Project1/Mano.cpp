@@ -36,12 +36,12 @@ int Mano::calcolaValore() {
     for (int i = 0; i < this->numCarte; i++) {
 
         int r = this->carte[i].getRank();
-        if (r == 1) { totale += 11; assi++; }  // lasso vale 11
+        if (r == 1) { totale += 11; assi++; }  // l'asso vale 11
         else if (r >= 10) { totale += 10; }           // figure valgono 10
         else { totale += r; }            // gli altri il loro valore
     }
 
-    // se sforo 21 lasso diventa 1
+    // se sforo 21 l'asso diventa 1
     while (totale > 21 && assi > 0) {
 
         totale -= 10;

@@ -79,21 +79,24 @@ int main() {
     ui.aggiungiTestoAlCentroRigCol(RIGA_TITOLO_MAIN, L"FINE TEST BLACKJACK");
     ui.aggiungiTestoRigCol(Posizione(8, 8), L"Ciao ");
     ui.aggiungiTestoRigCol(Posizione(8, 14), nomeGiocatore);
-    ui.aggiungiTestoRigCol(Posizione(10, 8), L"Hai ricevuto carte:");
-    ui.aggiungiNumeroRigCol(Posizione(10, 29), gioco.getCarteGiocatore());
+    ui.aggiungiTestoRigCol(Posizione(10, 8), L"Il tuo punteggio e':");
+    ui.aggiungiNumeroRigCol(Posizione(10, 29), gioco.getGiocatore().getMano().calcolaValore());
+
+    ui.aggiungiTestoRigCol(Posizione(12, 8), L"Il punteggio del banco e':");
+    ui.aggiungiNumeroRigCol(Posizione(12, 29), gioco.getBanco().getMano().calcolaValore());
 
     float num = gioco.determinaVincitore();
     if (num == 1)
     {
-        ui.aggiungiTestoRigCol(Posizione(12, 8), L"Hai vinto!");
+        ui.aggiungiTestoRigCol(Posizione(14, 8), L"Hai vinto!");
     }
     else
     {
-        ui.aggiungiTestoRigCol(Posizione(12, 8), L"Hai perso!");
+        ui.aggiungiTestoRigCol(Posizione(14, 8), L"Hai perso!");
     }
 
 
-    ui.aggiungiTestoRigCol(Posizione(14, 8), L"Premi ESC per terminare.");
+    ui.aggiungiTestoRigCol(Posizione(16, 8), L"Premi ESC per terminare.");
 
     ui.disegna();
 

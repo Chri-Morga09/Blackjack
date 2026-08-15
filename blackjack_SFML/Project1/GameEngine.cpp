@@ -27,11 +27,10 @@ GameEngine::GameEngine(InterfacciaUtente& ui, wstring nomeGiocatore)
 {
     this->nomeGiocatore = nomeGiocatore;
     this->carteGiocatore = 0;
-    this->card;
-    this->banco;
-    this->mano;
-    this->giocatore;
-    this->mazzo;
+    this->banco = Banco();
+    this->mano = Mano();
+    this->giocatore = Player();
+    this->mazzo = Deck();
 }
 
 int GameEngine::getCarteGiocatore()
@@ -48,11 +47,15 @@ void GameEngine::run() {
 
     distribuisciCarteIniziali();
     
-    
-    int c = 0;
-    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
-    c = 1;
-    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
+    //int c = 0;
+    //spostaCartaGiocatore(Posizione(RIGA_MAZZO + 1, COL_MAZZO), Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE + (carteGiocatore - 1)));
+    //ui.sleep(1000);
+    //ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
+    //c = 1;
+    //spostaCartaGiocatore(Posizione(RIGA_MAZZO + 1, COL_MAZZO), Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE + (carteGiocatore - 1)));
+    //ui.sleep(1000);
+    //ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
+
     // In questo ciclo di gioco, 
     while (continua == true) {
 
@@ -67,8 +70,8 @@ void GameEngine::run() {
             // Se il giocatore vuole una carta, si simula la ricezione di una carta (spostaCartaGiocatore) 
             spostaCartaGiocatore(
                 Posizione(RIGA_MAZZO + 1, COL_MAZZO),
-                Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE + (carteGiocatore - 1))
-            );
+                Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE + (carteGiocatore - 1)));
+
             // e si aggiorna il numero di carte ricevute.
             carteGiocatore = carteGiocatore + 1;
             turnoGiocatore();
@@ -100,6 +103,7 @@ void GameEngine::aggiungiSfondo() {
     ui.aggiungiRettangoloVuotoRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO-3), 14, 5, sf::Color::White);
     ui.aggiungiTestoRigCol(Posizione(RIGA_BANCO + 3, COL_BANCO + 3), L"MANO");
     
+  
     ui.aggiungiImmagineRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO), "./images/assoPicche.png", 0.5f, 0.5f);
     ui.aggiungiImmagineRigCol(Posizione(RIGA_BANCO + 1, COL_BANCO + 2), "./images/retroBlu.png", 0.5f, 0.5f);
 
