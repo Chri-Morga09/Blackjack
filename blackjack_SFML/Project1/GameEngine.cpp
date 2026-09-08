@@ -111,9 +111,85 @@ void GameEngine::aggiungiSfondo() {
     ui.aggiungiRettangoloVuotoRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE-3), 14, 5, sf::Color::Yellow);
     ui.aggiungiTestoRigCol(Posizione(RIGA_GIOCATORE + 2, COL_GIOCATORE + 3), L"MANO");
     ui.aggiungiTestoRigCol(Posizione(RIGA_GIOCATORE + 6, COL_GIOCATORE), L"Giocatore: " + nomeGiocatore);
-    for (int c = 0; c < carteGiocatore; c++) {
-        ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
-    }
+
+        for (int c = 0; c < carteGiocatore; c++) {
+
+            int n = rand() % 4 + 1;
+            int card = rand() % 13 + 1;
+            if (n == 1)
+            {
+                if (card == 1)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoPicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 2)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/duePicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 3)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/trePicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 4)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/quattroPicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 5)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/cinquePicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 6)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/seiPicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 7)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/settePicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 8)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/ottoPicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 9)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/novePicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 10)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/dieciPicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 11)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/jackPicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 12)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/reginaPicche.png", 0.5f, 0.5f);
+                }
+                else if (card == 13)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/rePicche.png", 0.5f, 0.5f);
+                }
+            }
+            else if (n == 2)
+            {
+                ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoFiori.png", 0.5f, 0.5f);
+              
+            }
+            else if (n == 3)
+            {
+                ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoQuadri.png", 0.5f, 0.5f);
+                
+            }
+            else if (n == 4)
+            {
+                ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoCuori.png", 0.5f, 0.5f);
+                
+            }
+
+        }
+     
+    
 
     // Numero carte
     ui.aggiungiTestoRigCol(Posizione(RIGA_GIOCATORE + 8, COL_GIOCATORE), L"Carte ricevute:");
