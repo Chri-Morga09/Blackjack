@@ -173,18 +173,170 @@ void GameEngine::aggiungiSfondo() {
             }
             else if (n == 2)
             {
-                ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoFiori.png", 0.5f, 0.5f);
+                if (card == 1)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 2)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/dueFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 3)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/treFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 4)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/quattroFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 5)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/cinqueFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 6)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/seiFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 7)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/setteFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 8)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/ottoFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 9)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/noveFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 10)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/dieciFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 11)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/jackFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 12)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/reginaFiori.png", 0.5f, 0.5f);
+                }
+                else if (card == 13)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/reFiori.png", 0.5f, 0.5f);
+                }
               
             }
             else if (n == 3)
             {
-                ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoQuadri.png", 0.5f, 0.5f);
+                if (card == 1)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 2)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/dueCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 3)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/treCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 4)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/quattroCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 5)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/cinqueCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 6)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/seiCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 7)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/setteCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 8)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/ottoCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 9)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/noveCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 10)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/dieciCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 11)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/jackCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 12)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/reginaCuori.png", 0.5f, 0.5f);
+                }
+                else if (card == 13)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/reCuori.png", 0.5f, 0.5f);
+                }
                 
             }
             else if (n == 4)
             {
-                ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoCuori.png", 0.5f, 0.5f);
-                
+                if (card == 1)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/AssoQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 2)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/dueQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 3)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/treQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 4)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/quattroQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 5)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/cinqueQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 6)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/seiQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 7)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/setteQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 8)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/ottoQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 9)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/noveQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 10)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/dieciQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 11)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/jackQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 12)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/reginaQuadri.png", 0.5f, 0.5f);
+                }
+                else if (card == 13)
+                {
+                    ui.aggiungiImmagineRigCol(Posizione(RIGA_GIOCATORE, COL_GIOCATORE + c * 2), "./images/reQuadri.png", 0.5f, 0.5f);
+                }
             }
 
         }
